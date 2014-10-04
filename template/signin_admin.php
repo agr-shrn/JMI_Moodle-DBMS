@@ -15,30 +15,23 @@
 
     <!-- Custom styles for this template -->
     <link href="signin_css.css" rel="stylesheet">
-  <script type="text/javascript" src="js/lib/jquery-1.11.1.min.js" ></script>
-   <script> 
-     $(function(){ $("head").load("header.html") });
-   </script>
   </head>
 
 
   <body>
 
-    
-
 <!--sign in -->
     
     <div class="container">
     <div class="row">
-        <div class="col-md-12">
-           
+        <div class="col-md-12"> 
             <div class="wrap">
                 <p class="form-title" >
                     Sign In</p>
-                <form class="login">
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+                <form class="login" method="POST" action="../public/admin_login.php">
+                <input type="text" name="username" placeholder="Username" />
+                <input type="password" name="password" placeholder="Password" />
+                <input type="submit" name="submit" value="Sign In" class="btn btn-success btn-sm" />
                 </form>
             </div>
         </div>

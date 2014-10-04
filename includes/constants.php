@@ -1,24 +1,9 @@
 <?php
 
-    /**
-     * constants.php
-     *
-     * Computer Science 50
-     * Problem Set 7
-     *
-     * Global constants.
-     */
-
-    // your database's name
-    define("DATABASE", "jmi_moodle");
-
-    // your database's password
-    define("PASSWORD", "12345");
-
-    // your database's server
-    define("SERVER", "localhost");
-
-    // your database's username
-    define("USERNAME", "root");
+// Database Constants
+define("DB_SERVER", "localhost");
+define("DB_USER", "root");
+define("DB_PASS", "12345");
+define("DB_NAME", "jmi_moodle");
 
 ?>

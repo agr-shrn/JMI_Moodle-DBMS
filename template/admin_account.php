@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="class.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
    
   </head>
@@ -24,13 +24,13 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="admin_home.html">Home</a>
-          <a class="blog-nav-item" href="courses.html">Courses</a>
-          <a class="blog-nav-item" href="students.html">Students</a>
-          <a class="blog-nav-item" href="teachers.html">Teachers</a>
-          <a class="blog-nav-item" href="class.html">Classes</a>
-          <a class="blog-nav-item active" href="posts.html">Posts$Comments</a>
-          <a class="blog-nav-item" href="admin_account.html">MyAccount</a>
+          <a class="blog-nav-item" href="admin_home.php">Home</a>
+          <a class="blog-nav-item" href="courses.php">Courses</a>
+          <a class="blog-nav-item" href="students.php">Students</a>
+          <a class="blog-nav-item" href="teachers.php">Teachers</a>
+          <a class="blog-nav-item" href="class.php">Classes</a>
+          <a class="blog-nav-item" href="posts.php">Posts$Comments</a>
+          <a class="blog-nav-item active" href="admin_account.php">MyAccount</a>
         </nav>
       </div>
     </div>
@@ -42,47 +42,39 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete Post</legend>
+          <legend>Change Password</legend>
 
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="textinput">Old Password</label>
+            <div class="col-sm-9">
+              <input type="password" placeholder="Enter old password" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="textinput">New Password</label>
+            <div class="col-sm-9">
+              <input type="password" placeholder="Enter new password" class="form-control">
+            </div>
+          </div>
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Post-ID</label>
-            <div class="col-sm-10">
-              <input type="text" placeholder="Enter Post-ID" class="form-control">
+            <label class="col-sm-3 control-label" for="textinput">Confirm Password</label>
+            <div class="col-sm-9">
+              <input type="password" placeholder="re-enter new password" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>
 
       
-        <fieldset>
-
-          <!-- Form Name -->
-          <legend>Delete Comment</legend>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Comment-ID</label>
-            <div class="col-sm-10">
-              <input type="text" placeholder="Enter comment-ID" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Delete</button>
-              </div>
-            </div>
-          </div>
-
-        </fieldset>
+  </fieldset>
       </form>
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->

@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="admin_home.css" rel="stylesheet">
+     <link href="css/style.css" rel="stylesheet">
 
   </head>
 
@@ -23,13 +23,13 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="admin_home.html">Home</a>
-          <a class="blog-nav-item" href="courses.html">Courses</a>
-          <a class="blog-nav-item" href="students.html">Students</a>
-          <a class="blog-nav-item" href="teacher.html">Teachers</a>
-          <a class="blog-nav-item" href="class.html">Classes</a>
-          <a class="blog-nav-item" href="posts.html">Posts$Comments</a>
-          <a class="blog-nav-item" href="admin_account.html">MyAccount</a>
+          <a class="blog-nav-item active" href="admin_home.php">Home</a>
+          <a class="blog-nav-item" href="courses.php">Courses</a>
+          <a class="blog-nav-item" href="students.php">Students</a>
+          <a class="blog-nav-item" href="teachers.php">Teachers</a>
+          <a class="blog-nav-item" href="class.php">Classes</a>
+          <a class="blog-nav-item" href="posts.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
          </nav>
       </div>
     </div>

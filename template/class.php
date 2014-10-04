@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="class.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
    
   </head>
@@ -24,21 +24,21 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="admin_home.html">Home</a>
-          <a class="blog-nav-item" href="courses.html">Courses</a>
-          <a class="blog-nav-item" href="students.html">Students</a>
-          <a class="blog-nav-item" href="teachers.html">Teachers</a>
-          <a class="blog-nav-item active" href="class.html">Classes</a>
-          <a class="blog-nav-item" href="posts.html">Posts$Comments</a>
-          <a class="blog-nav-item" href="admin_account.html">MyAccount</a>
-        </nav>
+          <a class="blog-nav-item" href="admin_home.php">Home</a>
+          <a class="blog-nav-item" href="courses.php">Courses</a>
+          <a class="blog-nav-item" href="students.php">Students</a>
+          <a class="blog-nav-item" href="teachers.php">Teachers</a>
+          <a class="blog-nav-item active" href="class.php">Classes</a>
+          <a class="blog-nav-item" href="posts.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
+      </nav>
       </div>
     </div>
 
     <div class="container">
         <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php">
         <fieldset>
 
           <!-- Form Name -->
@@ -48,22 +48,28 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Class-id without spaces" class="form-control">
+              <input type="text" name="classid" id="classid" placeholder="Enter Class-id without spaces" class="form-control">
             </div>
           </div>
 
          <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Department</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter department name" class="form-control">
-            </div>
+                 <select name="department" >
+                  <option value="computer engineering">computer engineering</option>
+                  <option value="electrical engineering" >electrical engineering</option>
+                  <option value="civil engineering">civil engineering</option>
+                  <option value="mechanical engineering">mechanical engineering</option>
+                  <option value="electronics and communication engineering">electronics and communication engineering</option>
+                  </select>
+               </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Attendance</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Attendance url or leave blank" class="form-control">
+              <input type="text" name="attendance" id="attendance" placeholder="Enter Attendance url or leave blank" class="form-control">
             </div>
           </div>
 
@@ -71,22 +77,22 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Semester</label>
             <div class="col-sm-10">
-              <input type="password" placeholder="Enter semester in digits" class="form-control">
+              <input type="text" name="sem" id="sem" placeholder="Enter semester in digits" class="form-control">
             </div>
           </div>
 <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Results</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter results url or leave blank" class="form-control">
+              <input type="text" name="result" id="result" placeholder="Enter results url or leave blank" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-default">Edit</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" name="edit" class="btn btn-default" id="">Edit</button>
+                <button type="submit" name="add" class="btn btn-primary">Add</button>
               </div>
             </div>
           </div>
