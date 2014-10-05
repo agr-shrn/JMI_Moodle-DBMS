@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    
     <link href="css/style.css" rel="stylesheet">
    
   </head>
@@ -23,11 +23,11 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" href="admin_home.php">Home</a>
-          <a class="blog-nav-item" href="courses.php">Courses</a>
-          <a class="blog-nav-item active" href="students.php">Students</a>
-          <a class="blog-nav-item" href="teachers.php">Teachers</a>
-          <a class="blog-nav-item" href="class.php">Classes</a>
-          <a class="blog-nav-item" href="posts.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_course.php">Courses</a>
+          <a class="blog-nav-item" href="admin_students.php">Students</a>
+          <a class="blog-nav-item active" href="admin_teachers.php">Teachers</a>
+          <a class="blog-nav-item" href="admin_class.php">Classes</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
        </nav>
       </div>
@@ -40,13 +40,13 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add/Edit Student record</legend>
+          <legend>Add/Edit Teacher Accounts</legend>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
+            <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Student-id without spaces" class="form-control">
+              <input type="text" placeholder="Enter Teacher-id without spaces" class="form-control">
             </div>
           </div>
 
@@ -59,14 +59,6 @@
             <label class="col-sm-2 control-label" for="textinput">last name</label>
             <div class="col-sm-4">
               <input type="text" placeholder="last name" class="form-control">
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Class ID</label>
-            <div class="col-sm-10">
-              <input type="text" placeholder="Enter class id" class="form-control">
             </div>
           </div>
 
@@ -98,13 +90,13 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete student record</legend>
+          <legend>Delete Teacher Account</legend>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
+            <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Student-ID without spaces" class="form-control">
+              <input type="text" placeholder="Enter Teacher-ID without spaces" class="form-control">
             </div>
           </div>
 
