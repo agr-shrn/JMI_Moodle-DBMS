@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+
    
   </head>
 
@@ -23,14 +24,13 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="admin_home.php">Home</a>
-          <a class="blog-nav-item" href="admin_course.php">Courses</a>
-          <a class="blog-nav-item" href="admin_students.php">Students</a>
-          <a class="blog-nav-item" href="admin_teachers.php">Teachers</a>
-          <a class="blog-nav-item" href="admin_class.php">Classes</a>
-          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
-          <a class="blog-nav-item active" href="admin_account.php">MyAccount</a>
-        </nav>
+          <a class="blog-nav-item" href="teacher_home.php">Home</a>
+          <a class="blog-nav-item" href="teacher_view.php">View post</a>
+          <a class="blog-nav-item" href="teacher_post.php">New Post</a>
+          <a class="blog-nav-item" href="teacher_books.php">Books</a>
+          <a class="blog-nav-item active" href="teacher_account.php">MyAccount</a>
+          <a class="blog-nav-item" align="right" href="logout.php">Logout</a>
+         </nav>
       </div>
     </div>
 
@@ -86,8 +86,5 @@
       <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>
     </div>
     <!--footer-->
-
-   <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
-  </body>
+ </body>
 </html>

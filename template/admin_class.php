@@ -25,11 +25,11 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" href="admin_home.php">Home</a>
-          <a class="blog-nav-item" href="courses.php">Courses</a>
-          <a class="blog-nav-item" href="students.php">Students</a>
-          <a class="blog-nav-item" href="teachers.php">Teachers</a>
-          <a class="blog-nav-item active" href="class.php">Classes</a>
-          <a class="blog-nav-item" href="posts.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_course.php">Courses</a>
+          <a class="blog-nav-item" href="admin_students.php">Students</a>
+          <a class="blog-nav-item" href="admin_teachers.php">Teachers</a>
+          <a class="blog-nav-item active" href="admin_class.php">Classes</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
       </nav>
       </div>
@@ -55,7 +55,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Department</label>
             <div class="col-sm-10">
-                 <select name="department" >
+                 <select class="form-control" name="department" >
                   <option value="computer engineering">computer engineering</option>
                   <option value="electrical engineering" >electrical engineering</option>
                   <option value="civil engineering">civil engineering</option>
@@ -75,10 +75,19 @@
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Semester</label>
+           <label class="col-sm-2 control-label" for="textinput">Semester</label>
             <div class="col-sm-10">
-              <input type="text" name="sem" id="sem" placeholder="Enter semester in digits" class="form-control">
-            </div>
+                 <select class="form-control" name="sem" >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  </select>
+               </div>
           </div>
 <!-- Text input-->
           <div class="form-group">
