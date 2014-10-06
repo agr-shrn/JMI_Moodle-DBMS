@@ -80,13 +80,9 @@
           </div>
 
         </fieldset>
-      </form>
-    </div><!-- /.col-lg-12 -->
-</div><!-- /.row -->
+   
+   
 
-    <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form">
         <fieldset>
 
           <!-- Form Name -->
@@ -103,14 +99,14 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
               </div>
             </div>
           </div>
 
         </fieldset>
-      </form>
-    </div><!-- /.col-lg-12 -->
+           </form>
+         </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
     </div>
 <!--footer-->

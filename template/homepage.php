@@ -24,7 +24,7 @@
 
 
 <ul class="nav nav-pills " role="tablist">
-  <li><a href="admin_signin.php">Admin</a></li>
+  <li><a href="signin_admin.php">Admin</a></li>
   </ul>
 </div>
     <div class="site-wrapper">
@@ -40,9 +40,9 @@
             <p class="lead">Log in</p>
             <p class="lead">
             <div class="ui-group-buttons">
-                <button type="button" class="btn btn-primary btn-lg"><a href="teacher_signin.php">Faculty</a></button>
+                <button type="button" class="btn btn-primary btn-lg"><a href="signin.php">Faculty</a></button>
                 <div class="or or-lg"></div>
-                <button type="button" class="btn btn-success btn-lg"><a href="student_signin.php">Student</a></button>
+                <button type="button" class="btn btn-success btn-lg"><a href="signin.php">Student</a></button>
             </div>
             </p>
           </div>

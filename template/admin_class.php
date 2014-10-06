@@ -105,8 +105,27 @@
               </div>
             </div>
           </div>
+          <hr>
+        </fieldset>
+        <fieldset>
+          <legend>Delete class record</legend>
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
+            <div class="col-sm-10">
+              <input type="text" name="classid2" placeholder="Enter Class-id without spaces" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="pull-right">
+                <button type="submit" name="delete" class="btn btn-danger" >delete</button>
+              </div>
+            </div>
+          </div>
 
         </fieldset>
+
       </form>
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
