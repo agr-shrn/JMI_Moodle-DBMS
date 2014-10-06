@@ -9,21 +9,23 @@
     
     if(isset($_POST['submit']) && isset($user) && isset($password))
     {
-        $query = "SELECT TR_ID,PASSWORD from teacher WHERE TR_ID='$user'";
+        $query = "SELECT TR_ID,PASSWORD from teacher";
         $rs = mysqli_query($connection, $query);
-        $num = mysqli_affected_rows($rs);
+        $num = mysqli_num_rows($rs);
         confirm_query($rs);
-           
-        if($num == 1){    
+        
+        for ($i=0; $i<$num ; $i++)
+        { 
             $row = mysqli_fetch_row($rs);
-               
-                if($user === $row[0] && $password === $row[1])
-                {
-                    $_SESSION['loggedin'] = 1;
-                    $_SESSION['user_id'] = $user;
-                    redirect_to("../template/teacher_home.php");
-                }
-        }       
+           
+            if($user === $row[0] && $password === $row[1])
+            {
+                $_SESSION['loggedin'] = 1;
+                $_SESSION['user_id'] = $user;
+                redirect_to("../template/teacher_home.php");
+
+            }       
+        }
     } 
 
     redirect_to("../template/homepage.php");
