@@ -1,13 +1,9 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
 <?php
 
-include_once("../includes/functions.php");
-include_once("../includes/session.php");
-  $host = "localhost";
-  $user = "root";
-  $password = "12345";
-  $db = "jmi_moodle";
-  $r = mysql_connect($host, $user, $password);
-  mysql_select_db($db);
+
         
         $class_id = $_POST['classid'];
         $dept = $_POST['department'];
@@ -20,7 +16,7 @@ include_once("../includes/session.php");
         //insert query
         if(!empty($class_id)){
             $query = "INSERT INTO class VALUES('$class_id','$dept','$attend','$semester','$res')";
-            $rs = mysql_query($query);
+            $rs = mysqli_query($connection,$query);
             if($rs){
                 $msg = "New class record added!";
             }  
@@ -37,13 +33,13 @@ include_once("../includes/session.php");
     else if (isset($_POST['edit'])){
         if(!empty($class_id)){
             $query = "DELETE FROM class WHERE CLASS_ID = '$class_id'";
-            $p = mysql_query($query);
-            $nm = mysql_num_rows($p);
+            $p = mysqli_query($connection,$query);
+            $nm = mysqli_num_rows($p);
             if($nm == 0){
                 redirect_to("../template/class.php");
             }
             $query = "INSERT INTO class VALUES('$class_id','$dept','$attend','$semester','$res')";
-            $rs = mysql_query($query);
+            $rs = mysqli_query($connection,$query);
             $msg="Class record edited successfully!";
         }
         else{
