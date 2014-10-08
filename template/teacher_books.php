@@ -1,3 +1,7 @@
+ <?php require_once("../includes/session.php"); ?>
+  <?php require_once("../includes/connection.php"); ?>
+  <?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,7 +77,7 @@
       <hr>
       <div class="row">
 
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-6 blog-main">
 
           <div class="blog-post">
             <h2 class="lead blog-description">Books for the course:</h2>
@@ -87,25 +91,30 @@
 
         </div><!-- /.blog-main -->
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
         <!--search input -->
         <div class="well">
-                <h4>View books by course:</h4>
-                <div class="input-group">
-                    <form action="teacher_view.html" method="post">
-                        <input type="text" placeholder="enter course" name="coursename" class="form-control">
-                        
-                    </form>
-                </div>
+               <form method="post" action="teacher_view.php">
+                
+                     <div class="col-sm-6">
+                  <select class="form-control" name="coursename" > 
+                  
+                 <?php 
+                    $tr = $_SESSION['user_id'];
+                    $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+            echo '<option>'.$row[0].'</option>';
+                      } ?>
+
+                  </select>
+                  </div>
+                   <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
+                  </form>
             </div>
-          <!--List of courses-->      
-          <ul class="list-group">
-              <li class="list-group-item active">Courses:</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+         
          
         </div><!-- /.blog-sidebar -->
 
