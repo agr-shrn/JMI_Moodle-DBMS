@@ -55,7 +55,7 @@
             <a class="blog-nav-item" href="teacher_post.php">New Post</a>
             <a class="blog-nav-item" href="teacher_books.php">Books</a>
             <a class="blog-nav-item" href="teacher_account.php">MyAccount</a>
-            <a class="blog-nav-item" href="logout.php">Logout</a>
+            <a class="blog-nav-item" href="../public/logout.php">Logout</a>
            </nav>
         </div>
       </div>

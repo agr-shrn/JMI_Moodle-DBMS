@@ -1,6 +1,6 @@
- <?php require_once("../includes/session.php"); ?>
-  <?php require_once("../includes/connection.php"); ?>
-  <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +31,8 @@
           <a class="blog-nav-item" href="teacher_post.php">New Post</a>
           <a class="blog-nav-item active" href="teacher_books.php">Books</a>
           <a class="blog-nav-item" href="teacher_account.php">MyAccount</a>
-          <a class="blog-nav-item" align="right" href="logout.php">Logout</a>
-         </nav>
+          <a class="blog-nav-item" href="../public/logout.php">Logout</a>
+          </nav>
       </div>
     </div>
 
@@ -83,8 +83,7 @@
             <h2 class="lead blog-description">Books for the course:</h2>
            <hr>
             <ul>
-            <li><p >A book this by that</p></li>
-            <li> <p >A book this by that</p></li>
+            
              </ul>
              </div><!-- /.blog-post -->
 
@@ -94,28 +93,34 @@
         <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
         <!--search input -->
         <div class="well">
-               <form method="post" action="teacher_view.php">
-                
-                     <div class="col-sm-6">
-                  <select class="form-control" name="coursename" > 
-                  
-                 <?php 
-                    $tr = $_SESSION['user_id'];
-                    $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
-                    $rs = mysqli_query($connection,$query);
-                    $nm = mysqli_num_rows($rs);
-                    for( $i=0; $i<$nm; $i++){
-                      $row = mysqli_fetch_row($rs);
-            echo '<option>'.$row[0].'</option>';
-                      } ?>
 
-                  </select>
-                  </div>
-                   <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
-                  </form>
+          <form method="post" action="teacher_books.php">
+                
+          <div class="col-sm-6">
+          <select class="form-control" name="coursename" > 
+                  
+          <?php 
+          $tr = $_SESSION['user_id'];
+          $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+          $rs = mysqli_query($connection,$query);
+          $nm = mysqli_num_rows($rs);
+          for( $i=0; $i<$nm; $i++)
+          {
+              $row = mysqli_fetch_row($rs);
+              echo '<option>'.$row[0].'</option>';
+          }
+
+          ?>
+
+          </select>
+          </div>
+           <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
+          </form>
+
             </div>
          
          
+
         </div><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
