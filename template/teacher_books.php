@@ -93,31 +93,34 @@
         <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
         <!--search input -->
         <div class="well">
-          <form role="form" method="post" action="teacher_books.php">
-                
-                     <div class="col-sm-8">
-                  <select class="form-control" name="coursename" > 
-                  
-                  <?php 
-                    $tr = $_SESSION['user_id'];
-                    $que = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
-                    $rst = mysqli_query($connection,$que);
-                    $num = mysqli_num_rows($rst);
-                    for( $i=0; $i<$num; $i++){
-                      $rowf = mysqli_fetch_row($rs);
-            echo '<option>'.$rowf[0].'</option>';
-                      } 
-                      ?>
 
-                  </select>
-                  </div>
-                   <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
-                  </form>
+          <form method="post" action="teacher_books.php">
                 
-               
+          <div class="col-sm-6">
+          <select class="form-control" name="coursename" > 
+                  
+          <?php 
+          $tr = $_SESSION['user_id'];
+          $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+          $rs = mysqli_query($connection,$query);
+          $nm = mysqli_num_rows($rs);
+          for( $i=0; $i<$nm; $i++)
+          {
+              $row = mysqli_fetch_row($rs);
+              echo '<option>'.$row[0].'</option>';
+          }
+
+          ?>
+
+          </select>
+          </div>
+           <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
+          </form>
+
             </div>
-          <!--List of courses-->      
-          
+         
+         
+
         </div><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
