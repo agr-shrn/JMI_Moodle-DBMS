@@ -83,7 +83,35 @@
             <h2 class="lead blog-description">Books for the course:</h2>
            <hr>
             <ul>
-            
+              
+                <?php 
+                
+                  if(isset($_POST['coursename']))
+                  {
+                    $cname = $_POST['coursename'];
+                    $fetch_id = "SELECT COURSE_ID from courses WHERE COURSE_NAME = '$cname'";
+                    $rslt = mysqli_query($connection,$fetch_id);
+                    $cid = mysqli_fetch_row($rslt);
+              
+                    $qu = "SELECT BOOK_NAME, AUTHOR from books WHERE COURSE_ID= '$cid[0]'";
+                    $run = mysqli_query($connection,$qu);
+                    
+                    $n = mysqli_num_rows($run);
+                    for($i=0; $i<$n; $i++)
+                    {
+                      echo '<div class="col-sm-8 ">';
+                      $row = mysqli_fetch_row($run);
+                      echo  '<div class="blog-post">';
+                      echo   '<h2 class="book-title">'.$row[0].'</h2>';
+                      //echo "  BY\n";
+                      echo  '<p>'.$row[1].'</p>';
+                      echo'</div>';
+                      echo'</div>';
+                                           
+                    }
+                  }
+                      
+                 ?>
              </ul>
              </div><!-- /.blog-post -->
 
