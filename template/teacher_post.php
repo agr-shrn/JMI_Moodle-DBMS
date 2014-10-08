@@ -1,3 +1,7 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,32 +39,44 @@
 
     <div class="container">
 
-      <div class="blog-header">
-        <p class="text-center"><h4>Add new posts here.</h4></p>
+      <div class="blog-title">
+        <p class="text-center"><h3>Add new posts here.</h3></p>
       </div>
-
+      <hr>
       <div class="row">
       <div class="col-md-10 col-md-offset-1">
-      <form role="form">
+      <form role="form" action="../public/teacher_post.php" method="post">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Select course</label>
             <div class="col-sm-10">
-                 <select class="form-control" name="department" >
-                  <option value="computer engineering">computer engineering</option>
-                  <option value="electrical engineering" >electrical engineering</option>
-                  <option value="civil engineering">civil engineering</option>
-                  <option value="mechanical engineering">mechanical engineering</option>
-                  <option value="electronics and communication engineering">electronics and communication engineering</option>
+                 <select class="form-control" name="coursename" > 
+                  
+                 <?php 
+                    $tr = $_SESSION['user_id'];
+                    $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+            echo '<option>'.$row[0].'</option>';
+                      } ?>
                   </select>
                </div>
             </div>
           <br />
           <br />
           <br />
-          <textarea class="form-control" rows="3" placeholder="Content here."></textarea>
-          
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Post-Heading</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Give your post a suitable heading." name="heading" class="form-control">
+            </div>
+          </div>
+          <br /><br /><br />
+          <textarea class="form-control" name="content" rows="3" placeholder="Content here."></textarea>          
           <br />
-      <button type="submit" class="btn btn-default">Submit</button>
+          
+      <button type="submit" name="post" class="btn btn-primary">Submit</button>
     </form>
       </div>
       </div>

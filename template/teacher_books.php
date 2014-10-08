@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>Teacher: Posts</title>
+    <title>Teacher: Books</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
         
         <p class="blog-post-title">Add books </p>
         <hr>
-        <form class="form-horizontal" role="form" method="post" action="teacher_books.html">
+        <form class="form-horizontal" role="form" method="post" action="../public/teacher_books.php">
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">courseID</label>
@@ -50,7 +50,14 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Book Name</label>
             <div class="col-sm-5">
-              <input type="text" name="bookname" placeholder="enter book title with author name " class="form-control">
+              <input type="text" name="bookname" placeholder="enter book title" class="form-control">
+            </div>
+          </div>
+
+           <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Author Name</label>
+            <div class="col-sm-5">
+              <input type="text" name="authname" placeholder="enter author name" class="form-control">
             </div>
           </div>
 

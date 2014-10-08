@@ -24,13 +24,12 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="admin_home.php">Home</a>
-          <a class="blog-nav-item" href="courses.php">Courses</a>
-          <a class="blog-nav-item" href="students.php">Students</a>
-          <a class="blog-nav-item" href="teachers.php">Teachers</a>
-          <a class="blog-nav-item" href="class.php">Classes</a>
-          <a class="blog-nav-item" href="posts.php">Posts$Comments</a>
-          <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
+          <a class="blog-nav-item" href="../template/teacher_home.php">Home</a>
+          <a class="blog-nav-item" href="../template/teacher_courses.php">Courses</a>
+          <a class="blog-nav-item" href="../template/teacher_class.php">Classes</a>
+          <a class="blog-nav-item" href="../template/teacher_books.php">Books</a>
+          <a class="blog-nav-item" href="../template/teacher_posts.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="../template/teacher_account.php">MyAccount</a>
       </nav>
       </div>
     </div>

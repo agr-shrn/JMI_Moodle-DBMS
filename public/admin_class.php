@@ -44,15 +44,12 @@
         if(!empty($class_id)){
             $query = "DELETE FROM class WHERE CLASS_ID = '$class_id'";
             $p = mysqli_query($r,$query);
-            $nm = mysqli_affected_rows($p);
-            if($nm == 0){
-                redirect_to("../template/admin_class.php");
-            } else {
-             
+            $nm = mysqli_affected_rows($r);
+            
                 $query = "INSERT INTO class VALUES('$class_id','$dept','$attend','$semester','$res')";
                 $rs = mysqli_query($r,$query);
                 $msg="Class record edited successfully!";
-            }
+            
         }
         else{
             $msg = "Please enter a valid class-id";
@@ -72,7 +69,7 @@
     }
 
     if($rs){
-        require 'header.php';
+        require 'admin_header.php';
         echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
         require 'footer.php';
 
