@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin: Students</title>
+    <title>Admin: Class</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +31,7 @@
           <a class="blog-nav-item active" href="admin_class.php">Classes</a>
           <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
+          <a class="blog-nav-item" href="../public/logout.php">Logout</a>
       </nav>
       </div>
     </div>
@@ -87,7 +88,7 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   </select>
-               </div>
+            </div>
           </div>
 <!-- Text input-->
           <div class="form-group">
@@ -119,7 +120,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" name="delete" class="btn btn-danger" >delete</button>
+                <button type="submit" name="delete" class="btn btn-danger" >Delete</button>
               </div>
             </div>
           </div>

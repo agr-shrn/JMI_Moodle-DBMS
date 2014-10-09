@@ -29,6 +29,7 @@
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
           <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
+          <a class="blog-nav-item" href="../public/logout.php">Logout</a>
        </nav>
       </div>
     </div>
@@ -36,7 +37,7 @@
     <div class="container">
         <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" method="post" action="../public/admin_students.php">
         <fieldset>
 
           <!-- Form Name -->
@@ -46,19 +47,19 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Student-id without spaces" class="form-control">
+              <input type="text" name="studentid" id="studentid" placeholder="Enter Student-id without spaces" class="form-control">
             </div>
           </div>
 
          <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">first name</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="first name" class="form-control">
+              <input type="text" name="firstname" id="firstname" placeholder="first name" class="form-control">
             </div>
 
             <label class="col-sm-2 control-label" for="textinput">last name</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="last name" class="form-control">
+              <input type="text" name="lastname" id="lastname" placeholder="last name" class="form-control">
             </div>
           </div>
 
@@ -66,7 +67,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Class ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter class id" class="form-control">
+              <input type="text" name="classid" id="classid" placeholder="Enter class id" class="form-control">
             </div>
           </div>
 
@@ -74,27 +75,21 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Password</label>
             <div class="col-sm-10">
-              <input type="password" placeholder="Enter default password" class="form-control">
+              <input type="password" name="password" id="password" placeholder="Enter default password" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-default">Edit</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" name="edit" class="btn btn-default">Edit</button>
+                <button type="submit" name="add" class="btn btn-primary">Add</button>
               </div>
             </div>
           </div>
 
         </fieldset>
-      </form>
-    </div><!-- /.col-lg-12 -->
-</div><!-- /.row -->
 
-    <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form">
         <fieldset>
 
           <!-- Form Name -->
@@ -104,14 +99,14 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Student-ID without spaces" class="form-control">
+              <input type="text" name="studentid2" id="studentid2" placeholder="Enter Student-ID without spaces" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
               </div>
             </div>
           </div>

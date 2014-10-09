@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin: Students</title>
+    <title>Admin: Posts</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
           <a class="blog-nav-item active" href="admin_post.php">Posts$Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
+          <a class="blog-nav-item" href="../public/logout.php">Logout</a>
        </nav>
       </div>
     </div>
@@ -37,7 +38,7 @@
     <div class="container">
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" method="post" action="../public/admin_post.php">
         <fieldset>
 
           <!-- Form Name -->
@@ -47,14 +48,14 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Post-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter Post-ID" class="form-control">
+              <input type="text" name="postid" id="postid" placeholder="Enter Post-ID" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <button type="submit" name="delete_post" class="btn btn-danger">Delete</button>
               </div>
             </div>
           </div>
@@ -69,14 +70,14 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Comment-ID</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Enter comment-ID" class="form-control">
+              <input type="text" name="commentid" id="commentid" placeholder="Enter comment-ID" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <button type="submit" name="delete_comment" class="btn btn-danger">Delete</button>
               </div>
             </div>
           </div>

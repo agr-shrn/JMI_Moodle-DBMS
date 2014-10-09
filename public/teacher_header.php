@@ -25,8 +25,6 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" href="../template/teacher_home.php">Home</a>
-          <a class="blog-nav-item" href="../template/teacher_courses.php">Courses</a>
-          <a class="blog-nav-item" href="../template/teacher_class.php">Classes</a>
           <a class="blog-nav-item" href="../template/teacher_books.php">Books</a>
           <a class="blog-nav-item" href="../template/teacher_posts.php">Posts$Comments</a>
           <a class="blog-nav-item" href="../template/teacher_account.php">MyAccount</a>
