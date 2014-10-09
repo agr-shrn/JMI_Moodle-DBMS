@@ -35,25 +35,26 @@
             }
         }  
         else{
-            redirect_to("../template/class.php");
+            redirect_to("../template/admin_class.php");
         } 
-
     }
 
     else if (isset($_POST['edit'])){
         if(!empty($class_id)){
-            $query = "DELETE FROM class WHERE CLASS_ID = '$class_id'";
-            $p = mysqli_query($r,$query);
-            $nm = mysqli_affected_rows($r);
-            
-                $query = "INSERT INTO class VALUES('$class_id','$dept','$attend','$semester','$res')";
-                $rs = mysqli_query($r,$query);
-                $msg="Class record edited successfully!";
-            
-        }
-        else{
-            $msg = "Please enter a valid class-id";
-        }
+            $query = "UPDATE class SET class_id='$class_id', department='$dept', attendance='$attend', semester=$semester, results='$res' ";
+			$query .= "WHERE class_id='{$class_id}'";
+            mysqli_query($r,$query);
+			$rs=1;
+            if(mysqli_affected_rows($r)){
+                $msg = "Class record edited!";
+            }  
+            else{
+                $msg = "Please enter a valid class-id.";
+            }           
+		}
+		else{
+            redirect_to("../template/admin_class.php");
+        } 
     }
 
     else if(isset($_POST['delete'])){

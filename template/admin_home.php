@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin: home</title>
+    <title>Admin: Home</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
           <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
+          <a class="blog-nav-item" href="../public/logout.php">Logout</a>
          </nav>
       </div>
     </div>

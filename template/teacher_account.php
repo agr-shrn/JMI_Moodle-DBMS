@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin: Students</title>
+    <title>Teacher: Account</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,37 +37,36 @@
     <div class="container">
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" method="post" action="../public/teacher_account.php">
         <fieldset>
 
           <!-- Form Name -->
           <legend>Change Password</legend>
-
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Old Password</label>
             <div class="col-sm-9">
-              <input type="password" placeholder="Enter old password" class="form-control">
+              <input type="password" placeholder="Enter old password" name="oldpass" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">New Password</label>
             <div class="col-sm-9">
-              <input type="password" placeholder="Enter new password" class="form-control">
+              <input type="password" placeholder="Enter new password" name="newpass" class="form-control">
             </div>
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Confirm Password</label>
             <div class="col-sm-9">
-              <input type="password" placeholder="re-enter new password" class="form-control">
+              <input type="password" placeholder="re-enter new password" name="confrmpass" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="change" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>
