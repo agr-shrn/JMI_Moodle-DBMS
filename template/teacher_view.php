@@ -60,7 +60,7 @@
         </div>
       </div>
 
-
+      <div class="row">
 
       <div class="container">
      
@@ -68,8 +68,33 @@
           <h1 class="blog-title">JMI Teacher's Blog</h1>
           <p class="lead blog-description">Search specific courses to see the related posts.</p>
         </div>
+        <div class="col-md-12">
+          <!--search input -->
+          <form method="post" action="teacher_view.php">
+                
+                   <label class="col-sm-2 control-label" for="textinput">Filter by course</label>
+                    <div class="col-sm-4">
+                  <select class="form-control" name="coursename" > 
+                  
+                 <?php 
+                    $tr = $_SESSION['user_id'];
+                    $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+            echo '<option>'.$row[0].'</option>';
+                      } ?>
 
-        <div class="row">
+                  </select>
+                  </div>
+                   <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
+                  </form>
+                  </div>
+        
+
+
+        
 
           
           <?php 
@@ -134,35 +159,70 @@
                      echo '</div><!-- /.blog-post -->';
                 }
                 echo '</div>';
-            }  echo '</div>';
-          ?>
-      
-          <div class="col-md-12">
-          <!--search input -->
-          <form method="post" action="teacher_view.php">
-                
-                   <label class="col-sm-2 control-label" for="textinput">Filter by course</label>
-                    <div class="col-sm-4">
-                  <select class="form-control" name="coursename" > 
+                echo '</div>';
+            } 
+            else
+            {
+              $rslt = 0;
+              //$cname = $_POST['coursename'];
+              $tr = $_SESSION['user_id'];
+              $query = "SELECT POST_TITLE,POST_ID,CONTENT,TIME_STAMP from `posts` where COURSE_ID IN ( select COURSE_ID from `courses` where TR_ID = '$tr' ) order  by TIME_STAMP DESC LIMIT 10";
+              $rslt = mysqli_query($connection,$query);
+              $n = mysqli_num_rows($rslt);
+              for($i=0; $i<$n; $i++)
+              {
+                echo '<div class="col-sm-8 ">';
+                $row = mysqli_fetch_row($rslt);
+                echo  '<div class="blog-post">';
+                 echo   '<h2 class="blog-post-title">'.$row[0].'</h2>';
+                   echo '<p class="blog-post-meta">POST#'.$row[1].' dated '.$row[3].'</p>';
+                   echo  '<p>'.$row[2].'</p>';
                   
-                 <?php 
-                    $tr = $_SESSION['user_id'];
-                    $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
-                    $rs = mysqli_query($connection,$query);
-                    $nm = mysqli_num_rows($rs);
-                    for( $i=0; $i<$nm; $i++){
-                      $row = mysqli_fetch_row($rs);
-            echo '<option>'.$row[0].'</option>';
-                      } ?>
-
-                  </select>
-                  </div>
-                   <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
-                  </form>
-                  </div>
+                    $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[1] ORDER BY TIME_STAMP DESC";
+                    $p = mysqli_query($connection,$qry);
+                    
+                    $count = mysqli_num_rows($p);
+                    
+                    if($count <> 0)
+                    {
+                       echo '<hr>';
+                      echo '<h4>Comments</h4>';
+                    }
+                    
+                    for($j=0; $j<$count; $j++)
+                    {
+                        $all = mysqli_fetch_row($p);  
+                        echo '<ul>';
+                        echo '<li>';
+                        echo '<p class="blog-post-meta">'.$all[1].' Posted on '.$all[2].'</p>';
+                        echo '<p >'.$all[0]. '</p>';
+                        echo  '</li>';
+                        echo '</ul>';
+                    }
+                     echo '<hr>';
+                     echo '<h4>Add comments</h4>
+                          <div class="col-lg-8">
+                          <form action="teacher_view.php" method="post" role="form">
+                            <div class="input-group">
+                              <input type="hidden" name="postid" value="'.$row[1].'">
+                              <input type="text" name="comment" class="form-control">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" name="go" type="submit">Go!</button>
+                              </span>
+                              </form>
+                            </div><!-- /input-group -->
+                          </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->';
+                        echo '<hr>';
+                      
+                     echo '</div><!-- /.blog-post -->';
+                }
+                echo '</div>';
+            }  
+            echo '</div>';
+          ?>
+         
         </div><!-- /.row -->
-
-      <!--footer-->
       <div class="push"></div>
       <div class="blog-footer">
         <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>
