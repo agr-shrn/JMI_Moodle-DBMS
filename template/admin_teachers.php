@@ -1,3 +1,7 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,12 +40,13 @@
 
     <div class="container">
         <div class="row">
+
     <div class="col-md-10 col-md-offset-1">
       <form class="form-horizontal" role="form" method="post" action="../public/admin_teachers.php">
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add/Edit Teacher Accounts</legend>
+          <legend>Add Teacher Accounts | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -74,12 +79,11 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" name="edit" class="btn btn-default">Edit</button>
                 <button type="submit" name="add" class="btn btn-primary">Add</button>
               </div>
             </div>
           </div>
-
+          <hr>
         </fieldset>
    
    
@@ -87,7 +91,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete Teacher Account</legend>
+          <legend>Delete Teacher Account | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -104,11 +108,59 @@
               </div>
             </div>
           </div>
-
+          <hr>
         </fieldset>
            </form>
          </div><!-- /.col-lg-12 -->
-</div><!-- /.row -->
+         <!--edit-->
+         <?php
+         echo '<div class="col-md-10 col-md-offset-1">';
+      
+      
+      if(!isset($_POST['add']))
+            {
+      echo 
+      '<form class="form-horizontal" role="form" method="post" action="admin_edit_teachers.php">
+        <fieldset>
+          <legend>Edit Teacher Account | <a href="view.php">view</a></legend>';
+            
+                
+             echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
+                <div class="col-sm-10">
+                   <select class="form-control" name="trid" >'; 
+                      
+                 
+                    
+                    $query = "SELECT TR_ID FROM teacher ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>
+                </div>
+            </div>';
+            
+             echo '<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right">
+                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                  </div>
+                </div>
+              </div>
+              </fieldset>
+              </form>';
+             }
+             else{
+              redirect_to("admin_edit_teachers.php");
+             }
+          ?>
+        
+      </div>
+
+      </div><!-- /.row -->
     </div>
 <!--footer-->
     <div class="push"></div>

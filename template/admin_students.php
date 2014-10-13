@@ -1,3 +1,7 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,13 +45,13 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add/Edit Student record</legend>
+          <legend>Add Student record | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="studentid" id="studentid" placeholder="Enter Student-id without spaces" class="form-control">
+              <input type="text" name="studentid" id="studentid" placeholder="Enter Student-id without spaces" class="form-control" required="required">
             </div>
           </div>
 
@@ -67,7 +71,17 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Class ID</label>
             <div class="col-sm-10">
-              <input type="text" name="classid" id="classid" placeholder="Enter class id" class="form-control">
+              <select class="form-control" name="classid" > 
+                   <?php 
+                    $query = "SELECT CLASS_ID FROM class ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                    ?>
+                  </select>
             </div>
           </div>
 
@@ -82,24 +96,26 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" name="edit" class="btn btn-default">Edit</button>
                 <button type="submit" name="add" class="btn btn-primary">Add</button>
               </div>
             </div>
           </div>
-
+          <hr>
         </fieldset>
+        </form>
 
+
+        <form class="form-horizontal" role="form" method="post" action="../public/admin_students.php">
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete student record</legend>
+          <legend>Delete student record | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="studentid2" id="studentid2" placeholder="Enter Student-ID without spaces" class="form-control">
+              <input type="text" name="studentid2" id="studentid2" placeholder="Enter Student-ID without spaces" class="form-control" required="required">
             </div>
           </div>
 
@@ -110,10 +126,61 @@
               </div>
             </div>
           </div>
-
+          <hr>
         </fieldset>
       </form>
     </div><!-- /.col-lg-12 -->
+
+    
+         <!--edit-->
+         <?php
+         echo '<div class="col-md-10 col-md-offset-1">';
+      
+      
+      if(!isset($_POST['add']))
+            {
+      echo 
+      '<form class="form-horizontal" role="form" method="post" action="admin_edit_students.php">
+        <fieldset>
+          <legend>Edit Student Record | <a href="view.php">view</a></legend>';
+            
+                
+             echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
+                <div class="col-sm-10">
+                   <select class="form-control" name="sid" >'; 
+                      
+                 
+                    
+                    $query = "SELECT STUDENT_ID FROM student ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>
+                </div>
+            </div>';
+            
+             echo '<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right">
+                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                  </div>
+                </div>
+              </div>
+              </fieldset>
+              </form>
+              </div>';
+             }
+             else{
+              redirect_to("admin_edit_students.php");
+             }
+          ?>
+        
+      
+
 </div><!-- /.row -->
     </div>
 <!--footer-->

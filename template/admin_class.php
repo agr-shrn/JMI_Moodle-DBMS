@@ -1,3 +1,7 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,17 +43,17 @@
     <div class="container">
         <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php">
+      <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php" enctype="multipart/form-data">
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add/Edit Class record</legend>
+          <legend>Add New Class record | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="classid" id="classid" placeholder="Enter Class-id without spaces" class="form-control">
+              <input type="text" name="classid" id="classid" placeholder="Enter Class-id without spaces" class="form-control" required="required">
             </div>
           </div>
 
@@ -70,7 +74,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Attendance</label>
             <div class="col-sm-10">
-              <input type="text" name="attendance" id="attendance" placeholder="Enter Attendance url or leave blank" class="form-control">
+               <input type="file" name="attendance" id="attendance">    
             </div>
           </div>
 
@@ -94,26 +98,28 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Results</label>
             <div class="col-sm-10">
-              <input type="text" name="result" id="result" placeholder="Enter results url or leave blank" class="form-control">
-            </div>
+                 <input type="file" name="results" id="results">
+              </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" name="edit" class="btn btn-default" id="">Edit</button>
                 <button type="submit" name="add" class="btn btn-primary">Add</button>
               </div>
             </div>
           </div>
           <hr>
-        </fieldset>
+          </fieldset>
+          </form>
+        
         <fieldset>
-          <legend>Delete class record</legend>
+        <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php" >
+          <legend>Delete class record | <a href="view.php">view</a></legend>
             <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="classid2" placeholder="Enter Class-id without spaces" class="form-control">
+              <input type="text" name="classid2" placeholder="Enter Class-id without spaces" class="form-control" required="requireds">
             </div>
           </div>
 
@@ -124,11 +130,58 @@
               </div>
             </div>
           </div>
-
+          </form>
+          <hr>
         </fieldset>
 
       </form>
     </div><!-- /.col-lg-12 -->
+
+    <div class="col-md-10 col-md-offset-1">
+      <?php
+      
+      if(!isset($_POST['add']))
+            {
+      echo 
+      '<form class="form-horizontal" role="form" method="post" action="admin_edit_class.php">
+        <fieldset>
+          <legend>Edit Class Record | <a href="view.php">view</a></legend>';
+            
+                
+             echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
+                <div class="col-sm-10">
+                   <select class="form-control" name="cid" >'; 
+                      
+                 
+                    
+                    $query = "SELECT CLASS_ID FROM class ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>
+                </div>
+            </div>';
+            
+             echo '<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right">
+                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                  </div>
+                </div>
+              </div>
+              </fieldset>
+              </form>';
+             }
+             
+          ?>
+        
+      </div>
+
+
 </div><!-- /.row -->
     </div>
 <!--footer-->

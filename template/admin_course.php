@@ -1,3 +1,7 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,18 +41,20 @@
 
     <div class="container">
         <div class="row">
+
+
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form" method="post" action="../public/admin_course.php">
+      <form class="form-horizontal" role="form" method="post" action="../public/admin_course.php" enctype="multipart/form-data" >
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add/Edit Course</legend>
+          <legend>Add New Course | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="courseid" id="courseid" placeholder="Enter Course-ID without spaces" class="form-control">
+              <input type="text" name="courseid" id="courseid" placeholder="Enter Course-ID without spaces" class="form-control" required="required">
             </div>
           </div>
 
@@ -72,14 +78,13 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Syllabus</label>
             <div class="col-sm-10">
-              <input type="text" name="syllabus" id="syllabus" placeholder="Enter Syllabus url" class="form-control">
+              <input type="file" name="syllabus" id="syllabus">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" name="edit" class="btn btn-default">Edit</button>
                 <button type="submit" name="add" class="btn btn-primary">Add</button>
               </div>
             </div>
@@ -90,13 +95,13 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete Course</legend>
+          <legend>Delete Course | <a href="view.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="courseid2" id="courseid2" placeholder="Enter Course-ID without spaces" class="form-control">
+              <input type="text" name="courseid2" id="courseid2" placeholder="Enter Course-ID without spaces" class="form-control" required="required">
             </div>
           </div>
 
@@ -107,10 +112,55 @@
               </div>
             </div>
           </div>
+          <hr>
 
         </fieldset>
       </form>
     </div><!-- /.col-lg-12 -->
+
+    <div class="col-md-10 col-md-offset-1">
+      <?php
+      
+      if(!isset($_POST['add']))
+            {
+      echo 
+      '<form class="form-horizontal" role="form" method="post" action="admin_edit_course.php">
+        <fieldset>
+          <legend>Edit Course | <a href="view.php">view</a></legend>';
+            
+                
+             echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
+                <div class="col-sm-10">
+                   <select class="form-control" name="cid" >'; 
+                      
+                 
+                    
+                    $query = "SELECT COURSE_ID FROM courses ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>
+                </div>
+            </div>';
+            
+             echo '<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right">
+                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                  </div>
+                </div>
+              </div>
+              </fieldset>
+              </form>';
+             }
+             
+          ?>
+        
+      </div>
 </div><!-- /.row -->
     </div>
 <!--footer-->
