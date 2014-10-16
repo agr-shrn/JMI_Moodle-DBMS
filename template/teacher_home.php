@@ -1,3 +1,7 @@
+<?php require_once("../includes/session.php"); ?>
+<?php require_once("../includes/connection.php"); ?>
+<?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,13 +36,17 @@
          </nav>
       </div>
     </div>
-
-    <div class="container">
-      <div class="blog-header">
-        <h1 class="blog-title">Welcome to JMI-Moodle!</h1>
-        
-      </div>
-    </div><!-- /.container -->
+    <?php
+      $user_id = $_SESSION['user_id'];
+      $qu = "SELECT TR_NAME from `teacher` where TR_ID = '$user_id'";
+      $run = mysqli_query($connection,$qu);
+      $row = mysqli_fetch_row($run);
+      echo '<div class="container">';
+      echo '<div class="blog-header">';
+      echo '<h1 class="blog-title">Welcome '.$row[0].'<br> to JMI-Moodle!</h1></br>';  
+      echo '</div>';
+      echo'</div>';
+      ?>
 
     <!--footer-->
     <div class="push"></div>
