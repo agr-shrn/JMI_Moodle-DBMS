@@ -63,15 +63,7 @@
                   </select>
                </div>
             </div>
-          <br />
-          <br />
-          <br />
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Post-Heading</label>
-            <div class="col-sm-10">
-              <input type="text" placeholder="Give your post a suitable heading." name="heading" class="form-control">
-            </div>
-          </div>
+          
           <br /><br /><br />
           <textarea class="form-control" name="content" rows="3" placeholder="Content here."></textarea>          
           <br />

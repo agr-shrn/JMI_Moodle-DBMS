@@ -13,12 +13,14 @@
          $r = mysqli_query($connection,$query);
          $row = mysqli_fetch_row($r);
          $user = $row[0];
-         $_POST['coursename']= $_POST['reload'] ;
+         if($_POST['reload']!="0")
+          $_POST['coursename']= $_POST['reload'] ;
          //get back here after posts are handled.
          $qry = "INSERT into comments (CONTENT, USER, USER_ID, POST_ID) VALUES ('$comment','$user','$user_id','$post_id')";
          $rs = mysqli_query($connection,$qry);
          if(!$rs){
-          echo "error";     
+          echo "error"; 
+
          }
 
       }
@@ -68,29 +70,30 @@
           <h1 class="blog-title">JMI Teacher's Blog</h1>
           <p class="lead blog-description">Search specific courses to see the related posts.</p>
         </div>
-        <div class="col-md-12">
+        
           <!--search input -->
           <form method="post" action="teacher_view.php">
-                
-                   <label class="col-sm-2 control-label" for="textinput">Filter by course</label>
-                    <div class="col-sm-4">
-                  <select class="form-control" name="coursename" > 
-                  
-                 <?php 
-                    $tr = $_SESSION['user_id'];
-                    $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
-                    $rs = mysqli_query($connection,$query);
-                    $nm = mysqli_num_rows($rs);
-                    for( $i=0; $i<$nm; $i++){
-                      $row = mysqli_fetch_row($rs);
-            echo '<option>'.$row[0].'</option>';
-                      } ?>
-
-                  </select>
+                  <div class="col-sm-6">
+                    <div class="input-group">
+                      <select type="text" class="form-control" placeholder="Username" name="coursename">
+                          <?php 
+                            $tr = $_SESSION['user_id'];
+                            $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+                            $rs = mysqli_query($connection,$query);
+                            $nm = mysqli_num_rows($rs);
+                            for( $i=0; $i<$nm; $i++){
+                              $row = mysqli_fetch_row($rs);
+                              echo '<option>'.$row[0].'</option>';
+                              } 
+                      ?>
+                      </select>
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">Filter</button>
+                      </span>
+                    </div>
                   </div>
-                   <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
                   </form>
-                  </div>
+                  
         
 
 
@@ -105,7 +108,7 @@
               $run = mysqli_query($connection,$qu);
               $cid = mysqli_fetch_row($run);
               
-              $query = "SELECT POST_TITLE,POST_ID,CONTENT,TIME_STAMP FROM posts WHERE COURSE_ID='$cid[0]' ORDER BY TIME_STAMP DESC";
+              $query = "SELECT POST_ID,CONTENT,TIME_STAMP FROM posts WHERE COURSE_ID='$cid[0]' ORDER BY TIME_STAMP DESC";
               $rs = mysqli_query($connection,$query);
               
               $n = mysqli_num_rows($rs);
@@ -113,12 +116,11 @@
               {
                 echo '<div class="col-sm-8 ">';
                 $row = mysqli_fetch_row($rs);
-                echo  '<div class="blog-post">';
-                 echo   '<h2 class="blog-post-title">'.$row[0].'</h2>';
-                   echo '<p class="blog-post-meta">POST#'.$row[1].' dated '.$row[3].'</p>';
-                   echo  '<p>'.$row[2].'</p>';
-                  
-                    $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[1] ORDER BY TIME_STAMP DESC";
+                echo '<div class="well" style="margin-top:20px">';
+                 echo  '<div class="blog-post">';
+                  echo  '<p style="font-family:Eras Medium ITC; font-weight:550; font-size:20px">'.$row[1].'</p>';
+                   echo '<p class="blog-post-meta" style="font-size:10px">POST#'.$row[0].' dated '.$row[2].'</p>';
+                   $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[0] ORDER BY TIME_STAMP DESC";
                     $p = mysqli_query($connection,$qry);
                     
                     $count = mysqli_num_rows($p);
@@ -140,45 +142,45 @@
                         echo '</ul>';
                     }
                      echo '<hr>';
-                     echo '<h4>Add comments</h4>
-                          <div class="col-lg-8">
+                     echo '<div class="col-lg-8">
                           <form action="teacher_view.php" method="post" role="form">
                             <div class="input-group">
-                              <input type="hidden" name="reload" value="'.$cname.'">
-                              <input type="hidden" name="postid" value="'.$row[1].'">
+                              <input type="hidden" name="reload" value="0">
+                              <input type="hidden" name="postid" value="'.$row[0].'">
                               <input type="text" name="comment" class="form-control">
                               <span class="input-group-btn">
-                                <button class="btn btn-default" name="go" type="submit">Go!</button>
+                                <button class="btn btn-primary" name="go" type="submit">comment</button>
                               </span>
                               </form>
                             </div><!-- /input-group -->
                           </div><!-- /.col-lg-6 -->
                         </div><!-- /.row -->';
-                        echo '<hr>';
                       
-                     echo '</div><!-- /.blog-post -->';
+                     echo '</div>';
+                     echo '</div>';
                 }
                 echo '</div>';
+                // ./well
                 echo '</div>';
+                // ./col
             } 
             else
             {
               $rslt = 0;
               //$cname = $_POST['coursename'];
               $tr = $_SESSION['user_id'];
-              $query = "SELECT POST_TITLE,POST_ID,CONTENT,TIME_STAMP from `posts` where COURSE_ID IN ( select COURSE_ID from `courses` where TR_ID = '$tr' ) order  by TIME_STAMP DESC LIMIT 10";
+              $query = "SELECT POST_ID,CONTENT,TIME_STAMP from `posts` where COURSE_ID IN ( select COURSE_ID from `courses` where TR_ID = '$tr' ) order  by TIME_STAMP DESC LIMIT 10";
               $rslt = mysqli_query($connection,$query);
               $n = mysqli_num_rows($rslt);
               for($i=0; $i<$n; $i++)
               {
-                echo '<div class="col-sm-8 ">';
+                echo '<div class="col-sm-10 ">';
                 $row = mysqli_fetch_row($rslt);
-                echo  '<div class="blog-post">';
-                 echo   '<h2 class="blog-post-title">'.$row[0].'</h2>';
-                   echo '<p class="blog-post-meta">POST#'.$row[1].' dated '.$row[3].'</p>';
-                   echo  '<p>'.$row[2].'</p>';
-                  
-                    $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[1] ORDER BY TIME_STAMP DESC";
+                echo '<div class="well" style="margin-top:20px">';
+                  echo  '<div class="blog-post">';
+                  echo  '<p style="font-family:Eras Medium ITC; font-weight:550; font-size:20px">'.$row[1].'</p>';
+                   echo '<p class="blog-post-meta" style="font-size:10px">POST#'.$row[0].' dated '.$row[2].'</p>';
+                    $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[0] ORDER BY TIME_STAMP DESC";
                     $p = mysqli_query($connection,$qry);
                     
                     $count = mysqli_num_rows($p);
@@ -200,24 +202,26 @@
                         echo '</ul>';
                     }
                      echo '<hr>';
-                     echo '<h4>Add comments</h4>
-                          <div class="col-lg-8">
+                     echo '<div class="col-lg-8">
                           <form action="teacher_view.php" method="post" role="form">
                             <div class="input-group">
-                              <input type="hidden" name="postid" value="'.$row[1].'">
+                              <input type="hidden" name="reload" value="0">
+                              <input type="hidden" name="postid" value="'.$row[0].'">
                               <input type="text" name="comment" class="form-control">
                               <span class="input-group-btn">
-                                <button class="btn btn-default" name="go" type="submit">Go!</button>
+                                <button class="btn btn-primary" name="go" type="submit">comment</button>
                               </span>
                               </form>
                             </div><!-- /input-group -->
                           </div><!-- /.col-lg-6 -->
                         </div><!-- /.row -->';
-                        echo '<hr>';
+                        
                       
                      echo '</div><!-- /.blog-post -->';
-                }
+                
                 echo '</div>';
+              }
+                 echo '</div>';
             }  
             echo '</div>';
           ?>

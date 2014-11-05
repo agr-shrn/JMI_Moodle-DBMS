@@ -94,6 +94,20 @@
           </div>
 
           <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Contact</label>
+            <div class="col-sm-10">
+              <input type="text" name="studentid" id="contact" placeholder="Enter contact number" class="form-control" required="required">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Email-ID</label>
+            <div class="col-sm-10">
+              <input type="text" name="studentid" id="email" placeholder="Enter email-ID " class="form-control" required="required">
+            </div>
+          </div>
+
+          <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
                 <button type="submit" name="add" class="btn btn-primary">Add</button>
