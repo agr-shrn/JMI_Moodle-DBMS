@@ -65,7 +65,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add New Course | <a href="view.php">view</a></legend>
+          <legend>Add New Course | <a href="admin_view_courses.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -122,7 +122,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete Course | <a href="view.php">view</a></legend>
+          <legend>Delete Course | <a href="admin_view_courses.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -163,7 +163,7 @@
       echo 
       '<form class="form-horizontal" role="form" method="post" action="admin_edit_course.php">
         <fieldset>
-          <legend>Edit Course | <a href="view.php">view</a></legend>';
+          <legend>Edit Course | <a href="admin_view_courses.php">view</a></legend>';
             
                 
              echo '<div class="form-group">

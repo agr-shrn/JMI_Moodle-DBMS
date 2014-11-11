@@ -1,6 +1,34 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+
+<?php 
+
+    if(isset($_POST['go'])){
+      
+        $comment = $_POST['comment'];
+         $user_id = $_SESSION['user_id'];
+         $post_id = $_POST['postid'];
+         $query = "SELECT STUDENT_NAME FROM student where STUDENT_ID='$user_id'";
+         $r = mysqli_query($connection,$query);
+         $row = mysqli_fetch_row($r);
+         $user = $row[0];
+         if($_POST['reload']!="0")
+          $_POST['coursename']= $_POST['reload'] ;
+         //get back here after posts are handled.
+         $qry = "INSERT into comments (CONTENT, USER, USER_ID, POST_ID) VALUES ('$comment','$user','$user_id','$post_id')";
+         $rs = mysqli_query($connection,$qry);
+         if(!$rs){
+          echo "error"; 
+
+         }
+
+      }
+
+  ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,68 +139,139 @@
                             <h1 style="font-family:centaur; font-weight:bold">BLOG <small>recent posts</small></h1> <!--make recent posts to active course-->
                         </div> 
                         <!--single blog style-->
-                        <div class="well" style="margin-top:20px; background-color:#E5F1C8">
-                            <div class="blog-post">
-                                <p style="font-family:Eras Medium ITC; font-weight:550; font-size:20px">Content goes here. Please make sure posts are written in proper case.</p>
-                                <p class="blog-post-meta" style="font-size:10px"><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                                <hr style="border-color:#000000">
-                                <h5>Comments:</h5>
-                                <ul>
-                                    <li>
-                                    <p class="blog-post-meta" >shehzad</p>
-                                    <p >comments go here</p>
-                                    </li>
-                                    <li>
-                                    <p class="blog-post-meta">August 28, 2013 11:00</p>
-                                    <p >comments go here</p>
-                                    </li>
-                                </ul>
+                        <?php 
+                            if(isset($_POST['coursename']))
+                            {
+                              $cname = $_POST['coursename'];
+                              $qu = "SELECT COURSE_ID from courses WHERE COURSE_NAME='$cname'";
+                              $run = mysqli_query($connection,$qu);
+                              $cid = mysqli_fetch_row($run);
+                              
+                              $query = "SELECT POST_ID,CONTENT,TIME_STAMP FROM posts WHERE COURSE_ID='$cid[0]' ORDER BY TIME_STAMP DESC";
+                              $rs = mysqli_query($connection,$query);
+                              
+                              $n = mysqli_num_rows($rs);
+                              for($i=0; $i<$n; $i++)
+                              {
+                                echo '<div class="col-sm-8 ">';
+                                $row = mysqli_fetch_row($rs);
+                                echo '<div class="well" style="margin-top:20px; background-color:#E5F1C8">';
+                                echo '<div class="blog-post">';
+                                echo '<p style="font-family:Eras Medium ITC; font-weight:550; font-size:20px">'.$row[1].'</p>';
+                                echo '<p class="blog-post-meta" style="font-size:10px"><span class="glyphicon glyphicon-time"></span> Posted on '.$row[2].'</p>';
                                 
-                                <form action="teacher_view.php" method="post" role="form">
-                                    <div class="input-group">
-                                        <input type="text" name="comment" class="form-control">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success" name="go" type="submit">comment</button>
-                                        </span>
-                                    </div><!-- /input-group -->
-                                </form>
-                            </div><!-- /.row -->
-                        </div>
-                                <!--single blog ends-->
-                                <!--single blog style-->
-                        <div class="well" style="margin-top:20px; background-color:#E5F1C8">
-                            <div class="blog-post">
-                                <p style="font-family:Eras Medium ITC; font-weight:550; font-size:20px">Content goes here. Please make sure posts are written in proper case.</p>
-                                <p class="blog-post-meta" style="font-size:10px"><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                                <hr style="border-color:#000000">
-                                <h5>Comments:</h5>
-                                <ul>
-                                    <li>
-                                    <p class="blog-post-meta" >shehzad</p>
-                                    <p >comments go here</p>
-                                    </li>
-                                    <li>
-                                    <p class="blog-post-meta">August 28, 2013 11:00</p>
-                                    <p >comments go here</p>
-                                    </li>
-                                </ul>
-                                
-                                <form action="teacher_view.php" method="post" role="form">
-                                    <div class="input-group">
-                                        <input type="text" name="comment" class="form-control">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success" name="go" type="submit">comment</button>
-                                        </span>
-                                    </div><!-- /input-group -->
-                                </form>
-                            </div><!-- /.row -->
-                        </div>
-                                <!--single blog ends-->
 
-                    </div>  
-                                     
+                                $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[0] ORDER BY TIME_STAMP DESC";
+                                $p = mysqli_query($connection,$qry);
+                                    
+                                $count = mysqli_num_rows($p);
+                                    
+                                    if($count <> 0)
+                                    {
+                                        echo '<hr style="border-color:#000000">';
+                                        echo '<h5>Comments:</h5>';
+                                    }
+                                    
+                                    for($j=0; $j<$count; $j++)
+                                    {
+                                        $all = mysqli_fetch_row($p);  
+                                        echo '<ul>';
+                                        echo '<li>';
+                                        echo '<p class="blog-post-meta">'.$all[1].' Commented on '.$all[2].'</p>';
+                                        echo '<p >'.$all[0]. '</p>';
+                                        echo  '</li>';
+                                        echo '</ul>';
+                                    }
+                                     echo '<hr>';
+                                     echo '<div class="col-lg-8">
+                                          <form action="students_blog.php" method="post" role="form">
+                                            <div class="input-group">
+                                              <input type="hidden" name="reload" value="0">
+                                              <input type="hidden" name="postid" value="'.$row[0].'">
+                                              <input type="text" name="comment" class="form-control">
+                                              <span class="input-group-btn">
+                                                <button class="btn btn-primary" name="go" type="submit">comment</button>
+                                              </span>
+                                              </form>
+                                            </div><!-- /input-group -->
+                                          </div><!-- /.col-lg-6 -->
+                                        </div><!-- /.row -->';
+                                      
+                                     echo '</div>';
+                                     echo '</div>';
+                                }
+                                echo '</div>';
+                                // ./well
+                                echo '</div>';
                                 
-                          
+                            } 
+                            else
+                            {
+                              $rslt = 0;
+                              //$cname = $_POST['coursename'];
+                              $id = $_SESSION['user_id'];
+                              $query = "SELECT POST_ID,CONTENT,TIME_STAMP from `posts` where COURSE_ID IN ( select COURSE_ID from `enrolled in` where STUDENT_ID = '$id' ) order  by TIME_STAMP DESC LIMIT 10";
+                              $rslt = mysqli_query($connection,$query);
+                              $n = mysqli_num_rows($rslt);
+                              for($i=0; $i<$n; $i++)
+                              {
+
+                                echo '<div class="col-sm-8 ">';
+                                $row = mysqli_fetch_row($rslt);
+                                echo '<div class="well" style="margin-top:20px; background-color:#E5F1C8">';
+                                echo '<div class="blog-post">';
+                                echo '<p style="font-family:Eras Medium ITC; font-weight:550; font-size:20px">'.$row[1].'</p>';
+                                echo '<p class="blog-post-meta" style="font-size:10px"><span class="glyphicon glyphicon-time"></span> Posted on '.$row[2].'</p>';
+                                
+
+                                $qry = "SELECT CONTENT,USER,TIME_STAMP FROM `comments` WHERE POST_ID=$row[0] ORDER BY TIME_STAMP DESC";
+                                $p = mysqli_query($connection,$qry);
+                                    
+                                $count = mysqli_num_rows($p);
+                                    
+                                    if($count <> 0)
+                                    {
+                                        echo '<hr style="border-color:#000000">';
+                                        echo '<h5>Comments:</h5>';
+                                    }
+                                    
+                                    for($j=0; $j<$count; $j++)
+                                    {
+                                        $all = mysqli_fetch_row($p);  
+                                        echo '<ul>';
+                                        echo '<li>';
+                                        echo '<p class="blog-post-meta">'.$all[1].' Commented on '.$all[2].'</p>';
+                                        echo '<p >'.$all[0]. '</p>';
+                                        echo  '</li>';
+                                        echo '</ul>';
+                                    }
+                                     echo '<hr>';
+                                     echo '<div class="col-lg-8">
+                                          <form action="students_blog.php" method="post" role="form">
+                                            <div class="input-group">
+                                              <input type="hidden" name="reload" value="0">
+                                              <input type="hidden" name="postid" value="'.$row[0].'">
+                                              <input type="text" name="comment" class="form-control">
+                                              <span class="input-group-btn">
+                                                <button class="btn btn-primary" name="go" type="submit">comment</button>
+                                              </span>
+                                              </form>
+                                            </div><!-- /input-group -->
+                                          </div><!-- /.col-lg-6 -->
+                                        </div><!-- /.row -->';
+                                      
+                                     echo '</div>';
+                                     echo '</div>';
+                                }
+                                echo '</div>';
+                                // ./well
+                                echo '</div>';
+                            }  
+                            echo '</div>';
+                          ?>
+         
+        </div><!-- /.row -->        
+                         
                     <div class="col-lg-3 col-lg-offset-1">
                     <br /><br /><br /><br /><br /><br />  
                     <div class="well" style="background-color:#c0d6e4">
@@ -188,14 +287,39 @@
                     <!-- /.input-group -->
                     </div>
                       
-                    <ul class="list-group">
-                    <!-- php code has to go here to autogenerate the courses corresponding to student -->
+                    
+                    <form method="post" action="students_blog.php">
+                    <div class="col-sm-12">
+                    <div class="input-group">
+                      <select type="text" class="form-control" placeholder="Username" name="coursename">
+                          <?php
+                            $id = $_SESSION['user_id']; 
+                            $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
+                            $rs = mysqli_query($connection,$query);
+                            $nm = mysqli_num_rows($rs);
+                            for( $i=0; $i<$nm; $i++)
+                            {
+                              $row = mysqli_fetch_row($rs);
+                              echo '<option>'.$row[0].'</option>';
+                            } 
+                      ?>
+                      </select>
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">Filter</button>
+                      </span>
+                    </div>
+                  </div>
+                  </form>
+                  <!--<ul class="list-group">
+                    php code has to go here to autogenerate the courses corresponding to student
                       <li class="list-group-item active">Courses:</li>
                       <li class="list-group-item">Computer Architecture</li>
                       <li class="list-group-item">Data Structures</li>
                       <li class="list-group-item">Analog and Digital</li>
                       <li class="list-group-item">Automata Theory</li>
-                    </ul>
+                        </ul>
+                      -->
+                    
                     </div> 
 
                       <div class="col-lg-12">   

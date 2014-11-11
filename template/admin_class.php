@@ -57,7 +57,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add New Class record | <a href="view.php">view</a></legend>
+          <legend>Add New Class record | <a href="admin_view_classes.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -125,7 +125,8 @@
         
         <fieldset>
         <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php" >
-          <legend>Delete class record | <a href="view.php">view</a></legend>
+
+          <legend>Delete class record | <a href="admin_view_classes.php">view</a></legend>
            <?php
             echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
@@ -142,6 +143,16 @@
                 </div>
             </div>';
             ?>
+
+          <legend>Delete class record | <a href="admin_view_classes.php">view</a></legend>
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
+            <div class="col-sm-10">
+              <input type="text" name="classid2" placeholder="Enter Class-id without spaces" class="form-control" required="requireds">
+            </div>
+          </div>
+
+>>>>>>> origin/master
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
@@ -164,7 +175,7 @@
       echo 
       '<form class="form-horizontal" role="form" method="post" action="admin_edit_class.php">
         <fieldset>
-          <legend>Edit Class Record | <a href="view.php">view</a></legend>';
+          <legend>Edit Class Record | <a href="admin_view_classes.php">view</a></legend>';
             
                 
              echo '<div class="form-group">

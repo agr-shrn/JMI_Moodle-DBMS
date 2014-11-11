@@ -108,10 +108,12 @@
                     <div class="col-lg-12">
                     <div class="page-header">
                         <h1 style="font-family:centaur; font-weight:bold">View Syllabus by Course</h1> <!--make recent posts to active course-->
-                    </div> 
+                    </div>
+
+                    <form method="post" action="students_syllabus.php"> 
                     <div class="col-lg-4">
                     <div class="input-group">
-                      <select type="text" class="form-control" placeholder="Username">
+                      <select type="text" class="form-control" placeholder="Username" name=courseid>
                           <?php 
                           $tr = $_SESSION['user_id'];
                           $query = "SELECT COURSE_ID FROM `enrolled in` WHERE STUDENT_ID='$tr'";
@@ -127,13 +129,43 @@
                           ?>
                       </select>
                       <span class="input-group-btn">
-                        <button class="btn btn-success" type="button">Select Course</button>
+                        <button class="btn btn-success" type="submit">Select Course</button>
                       </span>
                     </div>
                     </div>
-                        <img src="images/farm.jpg" onerror="this.src = 'images/contentUnavailable.png';" style="margin-top:20px; margin-left:20px" >
+                    </form>
+                    <?php
+
+
+                          if(isset($_POST['courseid']))
+                          {
+                             $cid = $_POST['courseid'];
+                             $qu = "SELECT SYLLABUS from courses where COURSE_ID ='$cid'";
+                             $run = mysqli_query($connection,$qu);
+                             $path = mysqli_fetch_row($run);
+
+                             echo' <img src='.$path[0].'onerror="this.src = 'images/contentUnavailable.png';" style="margin-top:20px; margin-left:20px" >';  
+
+                          }
+
+                             else
+                             {
+
+                                $id = $_SESSION['user_id'];
+                                $query = "SELECT SYLLABUS from courses where COURSE_ID in (select COURSE_ID from `enrolled in` where STUDENT_ID = '$id') limit 1";
+                                 $rslt = mysqli_query($connection,$query);
+                                 $path = mysqli_fetch_row($rslt);
+
+                                 echo' <img src="'.$path[0].'"onerror="this.src = 'images/contentUnavailable.png';" style="margin-top:20px; margin-left:20px" >';  
+
+
+                               }
+
+                    ?>
+
                     <hr>
-                        <p align="center">Project by <a href="">Sushmita-Sharan-Ashar</a></p>
+                    <p align="center">Project by <a href="">Sushmita-Sharan-Ashar</a></p>
+
     
                     </div>  
                 </div>
