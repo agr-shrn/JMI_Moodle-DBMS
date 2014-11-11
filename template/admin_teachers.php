@@ -14,6 +14,25 @@
 
     <title>Admin:Teacher</title>
 
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--select2.js-->
+    <link href="js/select2/select2.css" rel="stylesheet"/>
+    <script src="js/select2/select2.js"></script>
+    <script>
+        $(document).ready(function() {
+        $("#e1").select2({width:'resolve'});
+        $("#e2").select2({width:'resolve'});
+        
+        });
+    </script>
+   
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
@@ -99,14 +118,24 @@
 
           <!-- Form Name -->
           <legend>Delete Teacher Account | <a href="view.php">view</a></legend>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
-            <div class="col-sm-10">
-              <input type="text" name="teacherid2" id="teacherid2" placeholder="Enter Teacher-ID without spaces" class="form-control">
-            </div>
-          </div>
+            
+           <?php 
+           echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
+                <div class="col-sm-10">
+                   <select id="e1" style="width:500px" name="trid" >'; 
+                   
+                    $query = "SELECT TR_ID FROM teacher ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>
+                </div>
+            </div>';
+            ?>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -132,13 +161,11 @@
           <legend>Edit Teacher Account | <a href="view.php">view</a></legend>';
             
                 
-             echo '<div class="form-group">
+            echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
                 <div class="col-sm-10">
-                   <select class="form-control" name="trid" >'; 
-                      
-                 
-                    
+                   <select id="e2" style="width:500px" name="trid" >'; 
+                   
                     $query = "SELECT TR_ID FROM teacher ";
                     $rs = mysqli_query($connection,$query);
                     $nm = mysqli_num_rows($rs);

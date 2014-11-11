@@ -13,12 +13,22 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Admin: Class</title>
+    <script src="js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+    <!--select2.js-->
+    <link href="js/select2/select2.css" rel="stylesheet"/>
+    <script src="js/select2/select2.js"></script>
+    <script>
+        $(document).ready(function() {
+        $("#e1").select2({width:'resolve'});
+        $("#e2").select2({width:'resolve'});
+        });
+    </script>
 
    
   </head>
@@ -60,7 +70,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Department</label>
             <div class="col-sm-10">
-                 <select class="form-control" name="department" >
+                 <select id="e1"  name="department"  >
                   <option value="computer engineering">computer engineering</option>
                   <option value="electrical engineering" >electrical engineering</option>
                   <option value="civil engineering">civil engineering</option>
@@ -116,13 +126,22 @@
         <fieldset>
         <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php" >
           <legend>Delete class record | <a href="view.php">view</a></legend>
-            <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
-            <div class="col-sm-10">
-              <input type="text" name="classid2" placeholder="Enter Class-id without spaces" class="form-control" required="requireds">
-            </div>
-          </div>
-
+           <?php
+            echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
+                <div class="col-sm-10">
+                   <select id="e2" style="width:500px" name="cid" >'; 
+                    $query = "SELECT CLASS_ID FROM class ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>
+                </div>
+            </div>';
+            ?>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
@@ -151,10 +170,7 @@
              echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
                 <div class="col-sm-10">
-                   <select class="form-control" name="cid" >'; 
-                      
-                 
-                    
+                   <select id="e2" style="width:500px" name="cid" >'; 
                     $query = "SELECT CLASS_ID FROM class ";
                     $rs = mysqli_query($connection,$query);
                     $nm = mysqli_num_rows($rs);
@@ -180,8 +196,6 @@
           ?>
         
       </div>
-
-
 </div><!-- /.row -->
     </div>
 <!--footer-->

@@ -13,6 +13,24 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Admin: Courses</title>
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--select2.js-->
+    <link href="js/select2/select2.css" rel="stylesheet"/>
+    <script src="js/select2/select2.js"></script>
+    <script>
+        $(document).ready(function() {
+        $("#e1").select2({width:'resolve'});
+        $("#e2").select2({width:'resolve'});
+        $("#e3").select2({width:'resolve'});
+        });
+    </script>
+    
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +60,6 @@
     <div class="container">
         <div class="row">
 
-
     <div class="col-md-10 col-md-offset-1">
       <form class="form-horizontal" role="form" method="post" action="../public/admin_course.php" enctype="multipart/form-data" >
         <fieldset>
@@ -70,7 +87,17 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Teacher Id</label>
             <div class="col-sm-10">
-              <input type="text" name="teacherid" id="teacherid" placeholder="Enter teacher id" class="form-control">
+              <select id="e1" style="width:400px" name="trid" > 
+                   <?php
+                    $query = "SELECT TR_ID FROM teacher ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                      ?>
+                </select>
             </div>
           </div>
 
@@ -101,8 +128,18 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="courseid2" id="courseid2" placeholder="Enter Course-ID without spaces" class="form-control" required="required">
-            </div>
+             <select id="e2" style="width:550px" name="cid" >
+              <?php
+                    $query = "SELECT COURSE_ID FROM courses ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  ?>
+                  </select>
+              </div>
           </div>
 
           <div class="form-group">
@@ -132,9 +169,7 @@
              echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
                 <div class="col-sm-10">
-                   <select class="form-control" name="cid" >'; 
-                      
-                 
+                   <select id="e3" style="width:550px" name="cid" >'; 
                     
                     $query = "SELECT COURSE_ID FROM courses ";
                     $rs = mysqli_query($connection,$query);

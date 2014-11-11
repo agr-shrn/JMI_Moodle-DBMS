@@ -67,6 +67,9 @@
                     <li >
                         <a href="students_dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
+                    <li >
+                        <a href="students_courses.php"><span class="glyphicon glyphicon-chevron-right"></span> Select course</a>
+                    </li>
                     <li class="active">
                         <a href="students_blog.php"><span class="glyphicon glyphicon-comment"></span> Blog</a>
                     </li>

@@ -71,12 +71,11 @@
         }
     }
 
-    if($rs){
+   
         require 'admin_header.php';
         echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
         require 'footer.php';
 
-    }
-
+   
 
     ?>

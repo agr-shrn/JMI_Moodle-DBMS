@@ -56,6 +56,7 @@
             <a class="blog-nav-item active" href="teacher_view.php">View post</a>
             <a class="blog-nav-item" href="teacher_post.php">New Post</a>
             <a class="blog-nav-item" href="teacher_books.php">Books</a>
+            <a class="blog-nav-item" href="teacher_events.php">Events</a>
             <a class="blog-nav-item" href="teacher_account.php">MyAccount</a>
             <a class="blog-nav-item" href="../public/logout.php">Logout</a>
            </nav>

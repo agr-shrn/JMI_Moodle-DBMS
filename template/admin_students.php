@@ -13,6 +13,25 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Admin: Students</title>
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--select2.js-->
+    <link href="js/select2/select2.css" rel="stylesheet"/>
+    <script src="js/select2/select2.js"></script>
+    <script>
+        $(document).ready(function() {
+        $("#e1").select2({width:'resolve'});
+        $("#e2").select2({width:'resolve'});
+        $("#e3").select2({width:'resolve'});
+        });
+    </script>
+   
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +90,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Class ID</label>
             <div class="col-sm-10">
-              <select class="form-control" name="classid" > 
+              <select id="e1" style="width:400px" name="classid" > 
                    <?php 
                     $query = "SELECT CLASS_ID FROM class ";
                     $rs = mysqli_query($connection,$query);
@@ -82,14 +101,6 @@
                       } 
                     ?>
                   </select>
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Password</label>
-            <div class="col-sm-10">
-              <input type="password" name="password" id="password" placeholder="Enter default password" class="form-control">
             </div>
           </div>
 
@@ -104,6 +115,14 @@
             <label class="col-sm-2 control-label" for="textinput">Email-ID</label>
             <div class="col-sm-10">
               <input type="text" name="studentid" id="email" placeholder="Enter email-ID " class="form-control" required="required">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Password</label>
+            <div class="col-sm-10">
+              <input type="password" name="password" id="password" placeholder="Enter default password" class="form-control">
             </div>
           </div>
 
@@ -129,8 +148,19 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="studentid2" id="studentid2" placeholder="Enter Student-ID without spaces" class="form-control" required="required">
-            </div>
+              <?php
+              echo '<select id="e2" style="width:500px" name="sid" >'; 
+                     
+                    $query = "SELECT STUDENT_ID FROM student ";
+                    $rs = mysqli_query($connection,$query);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $row = mysqli_fetch_row($rs);
+                      echo '<option>'.$row[0].'</option>';
+                      } 
+                  echo  '</select>';
+                  ?>
+              </div>
           </div>
 
           <div class="form-group">
@@ -162,7 +192,7 @@
              echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Student-ID</label>
                 <div class="col-sm-10">
-                   <select class="form-control" name="sid" >'; 
+                   <select id="e3" style="width:500px" name="sid" >'; 
                       
                  
                     

@@ -14,8 +14,6 @@
              echo  '<form class="form-horizontal" role="form" method="post" action="admin_course.php">
                   <fieldset>
                     <legend>Edit Course</legend>';
-                      //if(!isset($_POST['submit']))
-                      //{
                           
                        echo '<div class="form-group">
                           <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
@@ -35,17 +33,27 @@
                 <div class="col-sm-10">
                   <input type="text" name="cname" value="'.$row[0].'" class="form-control">
                 </div>
-              </div>
+              </div>';
 
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="textinput">Teacher Id</label>
+              
+           echo '<div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
                 <div class="col-sm-10">
-                  <input type="text" name="teacherid"  value="'.$row[2].'" class="form-control">
+                   <select id="e1" style="width:500px" name="trid" >'; 
+                   
+                    $qry = "SELECT TR_ID FROM teacher ";
+                    $rs = mysqli_query($connection,$qry);
+                    $nm = mysqli_num_rows($rs);
+                    for( $i=0; $i<$nm; $i++){
+                      $r = mysqli_fetch_row($rs);
+                      echo '<option>'.$r[0].'</option>';
+                      } 
+                  echo  '</select>
                 </div>
-              </div>
+            </div>';
+            
 
-              <div class="form-group">
+             echo '<div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Syllabus</label>
             <div class="col-sm-10">
               <input type="file" name="syllabus" id="syllabus" value="'.$row[1].'">
