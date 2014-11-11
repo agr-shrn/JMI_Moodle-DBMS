@@ -105,80 +105,50 @@
                 </ul>
             </nav>
 <?php
-        echo' <div id="page-wrapper">
 
+	$oldpass = $_POST['oldpass'];
+	$newpass = $_POST['newpass'];
+	$conf_newpass = $_POST['conf_newpass'];
+	$id = $_SESSION['user_id'];
+  
+    if(isset($_POST['submit'])){
+            //insert query
+        if(!empty($oldpass)){
+			$query = "SELECT * FROM student WHERE STUDENT_ID = '$id' and password = '$oldpass'";
+			$rs = mysqli_query($connection,$query);
+			$nm = mysqli_num_rows($rs);
+            if($nm==1 and $newpass==$conf_newpass){
+				$query2 = "UPDATE student SET password='$newpass' WHERE STUDENT_ID ='$id'";
+				$rs2 = mysqli_query($connection,$query2);
+                $msg = "Password changed successfully!";
+            }  
+            else{
+                $msg = "Please enter the correct old password or re-check the new password";
+            }			
+        }  
+        else{
+            redirect_to("../template/admin_account.php");
+        } 
+		$rs=1;
+    }
+	
+	    if($rs)
+        {
+            echo' <div id="page-wrapper">
             <div class="container-fluid">
-           
-            <div class="container">
-                  <div class="row">
-                  <br /><br />
-                  <div class="col-lg-8 col-lg-offset-1">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">';
-                        
-                        $id= $_SESSION['user_id'];
-                        $qur = "SELECT * from student where STUDENT_ID = '$id'";
-                        $res= mysqli_query($connection,$qur);
-                        $row = mysqli_fetch_row($res);
-                        
-                        echo' <h3 class="panel-title">'.$row[1].'</h3>
-                        </div>
-                        <div class="panel-body">
-                          <div class="row">
-                            <div class=" col-md-12"> 
-                              <table class="table table-user-information">
-                                <tbody>
-                                  <tr>
-                                    <td>Department:</td>';
-                                    
-                                    $query = "SELECT DEPARTMENT from class where CLASS_ID in (SELECT CLASS_ID from student where STUDENT_ID = '$id')";
-                                    $rslt= mysqli_query($connection,$query);
-                                    $dept = mysqli_fetch_row($rslt);
-                        
-                                    echo' <td>'.$dept[0].'</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Roll no.</td>
-                                    <td>'.$row[0].'</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Semester</td>';
+            <div class="container"><br /><br/><h1>'."$msg".'</h1></div>
+            </div></div>';
 
-                                        $query = "SELECT SEMESTER from class where CLASS_ID in (SELECT CLASS_ID from student where STUDENT_ID = '$id')";
-                                        $rslt= mysqli_query($connection,$query);
-                                        $sem = mysqli_fetch_row($rslt);
+        }
+            
 
-                                    echo' <td>'.$sem[0].'</td>
-                                  </tr>
-                                    <tr>
-                                    <td>Contact</td>
-                                    <td>'.$row[4].'</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Email</td>
-                                    <td>'.$row[5].'</td>
-                                  </tr>
-                                    </td>
-                                       
-                                  </tr>
-                                 
-                                </tbody>
-                              </table>';
-                              ?>
-                              
-                              </div>
-                          </div>
-                        </div>
-                             
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="push"></div>
-                <div class="blog-footer">
-                  <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>
-                </div>
+    ?>
+     
+     <div class="push"></div>
+    <div class="blog-footer">
+      <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>
+    </div>
+    <!--footer-->
 
             </div>
             <!-- /.container-fluid -->

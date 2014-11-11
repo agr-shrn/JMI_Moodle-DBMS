@@ -109,8 +109,16 @@
                     <div class="page-header">
                         <h1 style="font-family:centaur; font-weight:bold">Attendance</h1> 
                     </div> 
-                        <img src="images/farm.jpg" onerror="this.src = 'images/contentUnavailable.png';" style="margin-top:20px; margin-left:20px" >
-                    <hr>
+                    <?php
+                             $id= $_SESSION['user_id'];
+                             $qu = "SELECT ATTENDANCE from class where CLASS_ID in (SELECT CLASS_ID from student where STUDENT_ID = '$id')";
+                             $run = mysqli_query($connection,$qu);
+                             $path = mysqli_fetch_row($run);
+                             $path[0] = "../uploads/".$path[0];
+                             echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">';
+
+                        ?>
+                        <hr>
                         <p align="center">Project by <a href="">Sushmita-Sharan-Ashar</a></p>
     
                     </div>  

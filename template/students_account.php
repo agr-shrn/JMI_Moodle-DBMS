@@ -111,7 +111,7 @@
 
                  <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form class="form-horizontal" role="form" method="post" action="../public/admin_account.php">
+      <form class="form-horizontal" role="form" method="post" action="../public/students_account.php">
        <br /><br />
         <fieldset>
             

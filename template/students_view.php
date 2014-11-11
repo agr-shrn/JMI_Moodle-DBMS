@@ -1,6 +1,7 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +14,23 @@
     <meta name="author" content="">
 
     <title>JMI-Moodle</title>
+
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!--select2.js-->
+    <link href="js/select2/select2.css" rel="stylesheet"/>
+    <script src="js/select2/select2.js"></script>
+    <script>
+        $(document).ready(function() {
+        $("#e1").select2({width:'resolve'});
+        });
+    </script>
+    
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -116,7 +134,8 @@
                       <form method="post" action="students_view.php">
                       <div class="col-sm-4">
                       <div class="input-group">
-                      <select type="text" class="form-control" placeholder="Usename" name="coursename">
+                      <!--<select id="e1" type="text" class="form-control" name="coursename">-->
+                      <select id="e1" style="width:200px" name="coursename" type="text" class="form-control">
                           <?php
                             $id = $_SESSION['user_id']; 
                             $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
