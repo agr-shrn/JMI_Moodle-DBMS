@@ -143,23 +143,20 @@
                              $qu = "SELECT SYLLABUS from courses where COURSE_ID ='$cid'";
                              $run = mysqli_query($connection,$qu);
                              $path = mysqli_fetch_row($run);
-
-                             echo' <img src='.$path[0].'onerror="this.src = 'images/contentUnavailable.png';" style="margin-top:20px; margin-left:20px" >';  
-
+                             $path[0] = "../uploads/".$path[0];
+                             echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
                           }
 
-                             else
-                             {
+                          else
+                            {
 
-                                $id = $_SESSION['user_id'];
-                                $query = "SELECT SYLLABUS from courses where COURSE_ID in (select COURSE_ID from `enrolled in` where STUDENT_ID = '$id') limit 1";
+                                 $id = $_SESSION['user_id'];
+                                 $query = "SELECT SYLLABUS from courses where COURSE_ID in (select COURSE_ID from `enrolled in` where STUDENT_ID = '$id') limit 1";
                                  $rslt = mysqli_query($connection,$query);
                                  $path = mysqli_fetch_row($rslt);
-
-                                 echo' <img src="'.$path[0].'"onerror="this.src = 'images/contentUnavailable.png';" style="margin-top:20px; margin-left:20px" >';  
-
-
-                               }
+                                 $path[0] = "../uploads/".$path[0];
+                                 echo '<img src="'.$path[0].'">';
+                            }
 
                     ?>
 

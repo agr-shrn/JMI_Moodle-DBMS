@@ -48,28 +48,28 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Event Date</label>
             <div class="col-sm-9">
-              <input type="date"  name="date" class="form-control">
+              <input type="date"  name="eventdate" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Event Timing</label>
             <div class="col-sm-9">
-              <input type="text" name="time" placeholder=" eg. 6:00 p.m." class="form-control">
+              <input type="text" name="eventtime" placeholder=" eg. 6:00 p.m." class="form-control">
             </div>
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Event Details</label>
             <div class="col-sm-9">
-              <input type="text" placeholder="eg. X event at Y venue" name="confrmpass" class="form-control">
+              <input type="text" placeholder="eg. X event at Y venue" name="details" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                  <button type="submit" name="change" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="event" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>
