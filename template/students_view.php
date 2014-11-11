@@ -109,77 +109,171 @@
                         <h1 style="font-family:centaur; font-weight:bold">View Students/Teachers by course</h1> <!--make recent posts to active course-->
                     </div>
                     </div> 
-                    <div class="col-lg-4">
-                    <div class="input-group">
-                      <select type="text" class="form-control" placeholder="Username">
-                          <?php 
-                          $tr = $_SESSION['user_id'];
-                          $query = "SELECT COURSE_ID FROM `enrolled in` WHERE STUDENT_ID='$tr'";
-                          $rs = mysqli_query($connection,$query);
-                          $nm = mysqli_num_rows($rs);
-                          for( $i=0; $i<$nm; $i++)
-                          {
+                    
+                      <form method="post" action="students_view.php">
+                      <div class="col-sm-4">
+                      <div class="input-group">
+                      <select type="text" class="form-control" placeholder="Usename" name="coursename">
+                          <?php
+                            $id = $_SESSION['user_id']; 
+                            $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
+                            $rs = mysqli_query($connection,$query);
+                            $nm = mysqli_num_rows($rs);
+                            for( $i=0; $i<$nm; $i++)
+                            {
                               $row = mysqli_fetch_row($rs);
-                              $que = "SELECT COURSE_NAME FROM `courses` WHERE COURSE_ID='$row[0]'";  
                               echo '<option>'.$row[0].'</option>';
-                          }
-
-                          ?>
+                            } 
+                      ?>
                       </select>
                       <span class="input-group-btn">
-                        <button class="btn btn-success" type="button">Select Course</button>
+                        <button class="btn btn-success" type="submit">Select Course</button>
                       </span>
                     </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="well" style=" font-family:DAVID font-size:20px">
-                          <p>Professor: SHEHZAD ALAM</p>
-                          
-                          <p>Email: shizu@123.com</p>
-                        </div>
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr class="success">
-                              <th>#</th>
-                              <th>ROLL NO.</th>
-                              <th>NAME</th>
-                              <th>CONTACT</th>
-                              <th>EMAIL</th>
-                              
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>1223124589</td>
-                              <td>abc@xyz.com</td>
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>1223124589</td>
-                              <td>abc@xyz.com</td>
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                             <td>1223124589</td>
-                              <td>abc@xyz.com</td>
-                            </tr>
-                            <tr>
-                              <td>4</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>1223124589</td>
-                              <td>abc@xyz.com</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
+                  </div>
+                  </form>
+
+                  <?php 
+                  if(isset($_POST['coursename']))
+                  {
+                     $cname = $_POST['coursename'];
+                     $qu = "SELECT TR_NAME,EMAIL from teacher where TR_ID in (select TR_ID from courses where COURSE_NAME='$cname')";
+                     $run = mysqli_query($connection,$qu);
+                     $tname = mysqli_fetch_row($run);
+
+                     $q = "SELECT COURSE_ID from courses where COURSE_NAME='$cname'";
+                     $rslt = mysqli_query($connection,$q);
+                     $cinfo = mysqli_fetch_row($rslt);
+
+
+                    echo' <div class="col-lg-8">';
+                    echo' <div class="well" style=" font-family:DAVID font-size:20px">';
+                    echo' <p>Course ID: '.$cinfo[0].'</p>';
+                    echo' <p>Professor: '.$tname[0].'</p>';
+                    echo' <p>Email: '.$tname[1].'</p>';
+                    echo' </div>';
+
+
+                    $qu = "SELECT STUDENT_ID from `enrolled in` where COURSE_ID in (select COURSE_ID from courses where COURSE_NAME='$cname')";
+                     $run = mysqli_query($connection,$qu);
+                     $num = mysqli_num_rows($run);
+
+                     echo' <table class="table table-bordered">';
+                      echo' <thead>';
+                      echo' <tr class="success">';
+                      echo' <th>#</th>';
+                      echo' <th>ROLL NO.</th>';
+                      echo' <th>NAME</th>';
+                      echo' <th>CONTACT</th>';
+                      echo' <th>EMAIL</th>';
+                      echo' </tr>';
+                      echo' </thead>';
+
+                      echo' <tbody>';
+                      $i = 1;
+                      for ($j=0; $j<$num; $j++) 
+                      { 
+
+                        $sid = mysqli_fetch_row($run);
+                        $query = "SELECT STUDENT_ID,STUDENT_NAME,CONTACT,EMAIL from student where STUDENT_ID = '$sid[0]'";
+                        $result = mysqli_query($connection,$query);
+                        while($sdetail = mysqli_fetch_array($result))
+                        {
+                                                      
+                          echo "<tr>
+                              <td>{$i}</td>
+                              <td>{$sdetail['STUDENT_ID']}</td>
+                              <td>{$sdetail['STUDENT_NAME']}</td>
+                              <td>{$sdetail['CONTACT']}</td>
+                              <td>{$sdetail['EMAIL']}</td>
+                          </tr>";
+                          $i++;
+                        }
+                       
+                         
+                      }
+
+                                           
+                      echo' </tbody>';
+                      echo' </table>';
+                      echo' </div>';
+                     }
+
+                     else
+                     {
+
+                         $id = $_SESSION['user_id']; 
+                         $qu = "SELECT COURSE_NAME,COURSE_ID from courses where COURSE_ID in (select COURSE_ID from `enrolled in` where STUDENT_ID = '$id') limit 1";
+                         $run = mysqli_query($connection,$qu);
+                         $cinfo = mysqli_fetch_row($run);
+
+                         $query = "SELECT TR_NAME,EMAIL from teacher where TR_ID in (select TR_ID from courses where COURSE_ID = '$cinfo[1]')";
+                         $rslt = mysqli_query($connection,$query);
+                         $tname = mysqli_fetch_row($rslt);
+
+                        echo' <div class="col-lg-8">';
+                        echo' <div class="well" style=" font-family:DAVID font-size:20px">';
+                        echo '<p>Course ID: '.$cinfo[1].'</p>';
+                        echo' <p>Professor: '.$tname[0].'</p>';
+                        echo' <p>Email: '.$tname[1].'</p>';
+                        echo' </div>';
+
+
+                         $q= "SELECT STUDENT_ID from `enrolled in` where COURSE_ID ='$cinfo[1]'";
+                         $result = mysqli_query($connection,$q);
+                         $num = mysqli_num_rows($result);
+
+                         echo' <table class="table table-bordered">';
+                          echo' <thead>';
+                          echo' <tr class="success">';
+                          echo' <th>#</th>';
+                          echo' <th>ROLL NO.</th>';
+                          echo' <th>NAME</th>';
+                          echo' <th>CONTACT</th>';
+                          echo' <th>EMAIL</th>';
+                          echo' </tr>';
+                          echo' </thead>';
+
+                          echo' <tbody>';
+
+                          $i = 1;
+                          for ($j=0; $j<$num; $j++) 
+                          { 
+
+                            $sid = mysqli_fetch_row($result);
+                            $query = "SELECT STUDENT_ID,STUDENT_NAME,CONTACT,EMAIL from student where STUDENT_ID = '$sid[0]'";
+                            $run = mysqli_query($connection,$query);
+                            
+                            while($sdetail =  mysqli_fetch_array($run))
+                            {
+                                                         
+                              echo"<tr>
+                                  <td>{$i}</td>
+                                  <td>{$sdetail['STUDENT_ID']}</td>
+                                  <td>{$sdetail['STUDENT_NAME']}</td>
+                                  <td>{$sdetail['CONTACT']}</td>
+                                  <td>{$sdetail['EMAIL']}</td>
+                              </tr>";
+                              $i++;
+                            }
+                           
+                             
+                          }
+
+                                               
+                          echo' </tbody>';
+                          echo' </table>';
+                          echo' </div>';
+
+
+                     }
+                             
+                    
+                    
+
+                  ?>
+
+
                     <div class="col-lg-12">
                     <!--footer-->
                     <div class="push"></div>

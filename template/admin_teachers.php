@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin:Teacher</title>
+    <title>Admin:Teachers</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Add Teacher Accounts | <a href="view.php">view</a></legend>
+          <legend>Add Teacher Accounts | <a href="admin_view_teachers.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -98,7 +98,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Delete Teacher Account | <a href="view.php">view</a></legend>
+          <legend>Delete Teacher Account | <a href="admin_view_teachers.php">view</a></legend>
 
           <!-- Text input-->
           <div class="form-group">
@@ -129,7 +129,7 @@
       echo 
       '<form class="form-horizontal" role="form" method="post" action="admin_edit_teachers.php">
         <fieldset>
-          <legend>Edit Teacher Account | <a href="view.php">view</a></legend>';
+          <legend>Edit Teacher Account | <a href="admin_view_teachers.php">view</a></legend>';
             
                 
              echo '<div class="form-group">
