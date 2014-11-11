@@ -42,6 +42,8 @@
     <br/>
     <br/>
     <br/>
+    <div class="row">
+    <div class="col-lg-12 col-md-offset-3">
 
     <?php
 
@@ -85,6 +87,8 @@
         echo' </div>';
 
     ?>
+    </div>
+</div>
 
 <div class="push"></div>
     <div class="blog-footer">

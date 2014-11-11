@@ -42,7 +42,8 @@
     <br/>
     <br/>
     <br/>
-
+    <div class="row">
+    <div class="col-lg-12 col-md-offset-3">
     <?php
 
        $qu = "SELECT * from teacher";
@@ -81,7 +82,8 @@
         echo' </div>';
 
     ?>
-
+    </div>
+</div>
 <div class="push"></div>
     <div class="blog-footer">
       <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>

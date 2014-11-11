@@ -34,12 +34,8 @@
     }
 
 
-    if($rs){
-        require 'teacher_header.php';
-        echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
-        require 'footer.php';
-
-    }
-
+    require 'teacher_header.php';
+    echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
+    require 'footer.php';
 
 ?>
