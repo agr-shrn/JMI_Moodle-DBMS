@@ -121,51 +121,61 @@
                             <tr class="success">
                               <th>Course ID</th>
                               <th>Course Name</th>
-                              <th>option</th>
+                              <th>Status</th>
                             </tr>
                           </thead>
                           <tbody>
                           <!--yaha ayega code-->
-                          <form action="../public/students_course.php" method="post" role="form">
+                          
+                          <form action="../public/students_courses.php" method="post" role="form">
                           <?php
                             $student= $_SESSION['user_id'];
-
-                            $qur = "SELECT `COURSE_ID` from `enrolled in` WHERE STUDENT_ID='$student'";
-                            $res= mysqli_query($connection,$qur);
-                            $count = mysqli_num_rows($res);
                             
                             $query="SELECT `COURSE_ID`,`COURSE_NAME` FROM `courses` ";
                             $rs = mysqli_query($connection,$query);
                             $n = mysqli_num_rows($rs); 
 
-                            for($i=0; $i<$n; $i++){
-                              $flag=1;  
+                            for($i=0; $i<$n; $i++)
+                            {
+                              $flag=0;  
                               $row = mysqli_fetch_row($rs);
+                              $qur = "SELECT `COURSE_ID` from `enrolled in` WHERE STUDENT_ID='$student'";
+                              $res= mysqli_query($connection,$qur);
+                              $count = mysqli_num_rows($res);
 
-                              echo '@'.$row[0];
+                              //echo '@'.$row[0];
+                                
 
-                              for($y=0; $y<$count; $y++){
+                              for($y=0; $y<$count; $y++)
+                              {
+
                                  $rara = mysqli_fetch_row($res);
-                                 echo $rara[0];
-                                if($rara[0]!==$row[0])
-                                  $flag=0;
+                                 //echo $rara[0];
+                                if($rara[0]==$row[0])
+                                  $flag=1;
                               }
-                              if($flag==1){
-                              echo 
-                              '<tr>
-                                <td>'.$row[0].'</td>
-                                <td>'.$row[1].'</td>
-                                <td><button class="btn btn-sm btn-warning " style="align: center; " type="submit" name="select">enrolled</button></td>
-                              </tr>';
+                                $cid[$i] = $row[0];
+                              if($flag==1)
+                              {
+                                  echo 
+                                  '<tr>
+                                    <td>'.$row[0].'</td>
+                                    <td>'.$row[1].'</td>
+                                  <input type="hidden" name="count" value="'.$n.'">  
+                                  <input type="hidden" name="del'.$i.'" value="'.$cid[$i].'">
+                                  <td><button class="btn btn-sm btn-success " style="align: center; " type="submit" name="remove'.$i.'">enrolled</button></td>
+                                  </tr>';
                               }
                               else
                               {
-                               echo 
-                               '<tr>
-                                <td>'.$row[0].'</td>
-                                <td>'.$row[1].'</td>
-                                <td><button class="btn btn-sm btn-success " style="align: center; " type="submit" name="select">enrolled</button></td>
-                              </tr>';
+                                  echo 
+                                   '<tr>
+                                    <td>'.$row[0].'</td>
+                                    <td>'.$row[1].'</td>
+                                  <input type="hidden" name="count" value="'.$n.'">  
+                                  <input type="hidden" name="ins'.$i.'" value="'.$cid[$i].'">
+                                  <td><button class="btn btn-sm btn-warning " style="align: center; " type="submit" name="select'.$i.'">not enrolled</button></td>
+                                  </tr>';
                               }
                           }
                             ?>
