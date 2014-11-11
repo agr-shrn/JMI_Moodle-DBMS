@@ -110,13 +110,16 @@
                     <div class="page-header">
                         <h1 style="font-family:centaur; font-weight:bold">BOOKS/REFERENCE</h1> <!--make recent posts to active course-->
                     </div>
-                    </div> 
-                    <div class="col-lg-4">
+                    </div>
+
+                    <form method="post" action="students_books.php">
+                    <div class="col-sm-4">
                     <div class="input-group">
-                      <select type="text" class="form-control" placeholder="Username">
-                          <?php 
-                          $tr = $_SESSION['user_id'];
-                          $query = "SELECT COURSE_ID FROM `enrolled in` WHERE STUDENT_ID='$tr'";
+                    <select type="text" class="form-control" placeholder="Username" name="coursename">
+                          
+                        <?php 
+                          $id = $_SESSION['user_id']; 
+                          $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
                           $rs = mysqli_query($connection,$query);
                           $nm = mysqli_num_rows($rs);
                           for( $i=0; $i<$nm; $i++)
@@ -129,48 +132,96 @@
                           ?>
                       </select>
                       <span class="input-group-btn">
-                        <button class="btn btn-success" type="button">Select Course</button>
+                        <button class="btn btn-success" type="submit">Select Course</button>
                       </span>
                     </div>
                     </div>
-                    <div class="col-lg-8">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr class="success">
-                              <th>#</th>
-                              <th>BOOK NAME</th>
-                              <th>AUTHOR</th>
-                              
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
+                    </form>
+
+
+
+                    <?php 
+                  if(isset($_POST['coursename']))
+                  {
+                     $cname = $_POST['coursename'];
+                     $qu = "SELECT BOOK_NAME,AUTHOR from books where COURSE_ID in (select COURSE_ID from courses where COURSE_NAME='$cname')";
+                     $run = mysqli_query($connection,$qu);
+                     $bnum = mysqli_num_rows($run);
+
+                      echo' <div class="col-lg-8">';
+                      echo' <table class="table table-bordered">';
+                      echo' <thead>';
+                      echo' <tr class="success">';
+                      echo' <th>#</th>';
+                      echo' <th>BOOK NAME</th>';
+                      echo' <th>AUTHOR</th>';
+                      echo' </tr>';
+                      echo' </thead>';
+                      echo' <tbody>';
+
+                      $i = 1;
+                      while($binfo = mysqli_fetch_array($run))
+                        {
+                                                      
+                          echo "<tr>
+                              <td>{$i}</td>
+                              <td>{$binfo['BOOK_NAME']}</td>
+                              <td>{$binfo['AUTHOR']}</td>
+                              </tr>";
+                          $i++;
+                        }
+                                           
+                      echo' </tbody>';
+                      echo' </table>';
+                      echo' </div>';
+                     }
+
+                     else
+                     {
+                         $id = $_SESSION['user_id']; 
+                         $query = "SELECT COURSE_ID from `enrolled in` where STUDENT_ID = '$id' limit 1";
+                         $rslt = mysqli_query($connection,$query);
+                         $cid = mysqli_fetch_row($rslt);
+
+                         $qu = "SELECT BOOK_NAME,AUTHOR from books where COURSE_ID ='$cid[0]'";
+                         $run = mysqli_query($connection,$qu);
+
+                          echo' <div class="col-lg-8">';
+                          echo' <table class="table table-bordered">';
+                          echo' <thead>';
+                          echo' <tr class="success">';
+                          echo' <th>#</th>';
+                          echo' <th>BOOK NAME</th>';
+                          echo' <th>AUTHOR</th>';
+                          echo' </tr>';
+                          echo' </thead>';
+                          echo' <tbody>';
+                          
+                          $i = 1;
+                          while($binfo = mysqli_fetch_array($run))
+                            {
+                                                          
+                              echo "<tr>
+                                  <td>{$i}</td>
+                                  <td>{$binfo['BOOK_NAME']}</td>
+                                  <td>{$binfo['AUTHOR']}</td>
+                                  </tr>";
+                              $i++;
+                            }
+
+                                               
+                          echo' </tbody>';
+                          echo' </table>';
+                          echo' </div>';
+                     }
                              
-                            </tr>
-                            <tr>
-                              <td>4</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
+                    
+                    
+
+                  ?>
+
+
+
                     <div class="col-lg-12">
                     <div class="push"></div>
                     <div class="blog-footer">

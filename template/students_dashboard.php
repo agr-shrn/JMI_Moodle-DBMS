@@ -126,7 +126,14 @@
                         </ol>
                     </div>
                 </div>
-                
+
+                <?php
+                    $query = "SELECT EVENT,EVENT_DATE,EVENT_TIME ";
+                    $query .= "FROM events ";
+                    $query .= "ORDER BY EVENT_DATE DESC";
+                    $result = mysqli_query($connection,$query) or die("Could not connect to the database<br />" . mysqli_error($connection));
+                    $num_events = mysqli_num_rows($result);
+                ?>
 
                 <div class="row">
                     
@@ -135,6 +142,34 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Recent Events</h3>
                             </div>
+                            <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                              <th>#</th>  
+                                              <th>Event</th>
+                                              <th>Date</th>
+                                              <th>Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php  
+                                                $i = 1;
+                                                while($event = mysqli_fetch_array($result)) {
+                                                    
+                                                    echo "<tr>
+                                                        <td>{$i}</td>
+                                                        <td>{$event['EVENT']}</td>
+                                                        <td>{$event['EVENT_DATE']}</td>
+                                                        <td>{$event['EVENT_TIME']}</td>
+                                                    </tr>";
+                                                    $i++;
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                            </div> <!-- End: div class="table-responsive" -->
+                            <!--
                             <div class="panel-body">
                                 <div class="list-group">
                                     <a class="list-group-item">
@@ -163,7 +198,7 @@
                                     </a>
                                 </div>
                                 
-                            </div>
+                            </div>-->
                         </div>
                     <hr>
                     <footer class="site-footer">
