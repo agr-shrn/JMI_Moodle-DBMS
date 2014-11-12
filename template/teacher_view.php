@@ -77,15 +77,28 @@
                   <div class="col-sm-6">
                     <div class="input-group">
                       <select type="text" class="form-control" placeholder="Username" name="coursename">
-                          <?php 
+                          <?php
+
+                            if(isset($_POST['coursename']))
+                                $cname = $_POST['coursename'];
+                            else
+                                $cname = 0;
+
                             $tr = $_SESSION['user_id'];
                             $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
                             $rs = mysqli_query($connection,$query);
                             $nm = mysqli_num_rows($rs);
-                            for( $i=0; $i<$nm; $i++){
+
+                            for($i=0; $i<$nm; $i++)
+                            {
                               $row = mysqli_fetch_row($rs);
-                              echo '<option>'.$row[0].'</option>';
-                              } 
+                              
+                              if($row[0] === $cname)
+                                echo' <option selected>'.$row[0].'</option>';
+                              else
+                                echo' <option>'.$row[0].'</option>';
+                              
+                            } 
                       ?>
                       </select>
                       <span class="input-group-btn">

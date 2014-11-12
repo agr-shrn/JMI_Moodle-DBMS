@@ -137,14 +137,24 @@
                       <!--<select id="e1" type="text" class="form-control" name="coursename">-->
                       <select id="e1" style="width:200px" name="coursename" type="text" class="form-control">
                           <?php
+
+                            if(isset($_POST['coursename']))
+                                $cname = $_POST['coursename'];
+                            else
+                                $cname = 0;
+
                             $id = $_SESSION['user_id']; 
                             $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
                             $rs = mysqli_query($connection,$query);
                             $nm = mysqli_num_rows($rs);
+                            
                             for( $i=0; $i<$nm; $i++)
                             {
                               $row = mysqli_fetch_row($rs);
-                              echo '<option>'.$row[0].'</option>';
+                              if($row[0] === $cname)
+                                echo' <option selected>'.$row[0].'</option>';
+                              else
+                                echo' <option>'.$row[0].'</option>';
                             } 
                       ?>
                       </select>
