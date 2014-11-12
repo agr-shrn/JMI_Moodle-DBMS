@@ -252,7 +252,7 @@
                           echo' <th>ROLL NO.</th>';
                           echo' <th>NAME</th>';
                           echo' <th>CONTACT</th>';
-                          echo' <th>EMAIL</th>';
+                            echo' <th>EMAIL</th>';
                           echo' </tr>';
                           echo' </thead>';
 

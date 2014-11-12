@@ -78,80 +78,86 @@
       <hr>
       <div class="row">
 
-        <div class="col-sm-6 blog-main">
+       <div class="col-lg-6">
+        <h4 >Books/Reference</h4> <!--make recent posts to active course-->
+        </div>
+        <div class="col-md-4">
+            
+            <!--search input -->
+            <div class="well">
 
-          <div class="blog-post">
-            <h2 class="lead blog-description">Books for the course:</h2>
-           <hr>
-            <ul>
+              <form method="post" action="teacher_books.php">
               
-                <?php 
-                
-                  if(isset($_POST['coursename']))
-                  {
-                    $cname = $_POST['coursename'];
-                    $fetch_id = "SELECT COURSE_ID from courses WHERE COURSE_NAME = '$cname'";
-                    $rslt = mysqli_query($connection,$fetch_id);
-                    $cid = mysqli_fetch_row($rslt);
-              
-                    $qu = "SELECT BOOK_NAME, AUTHOR from books WHERE COURSE_ID= '$cid[0]'";
-                    $run = mysqli_query($connection,$qu);
-                    
-                    $n = mysqli_num_rows($run);
-                    for($i=0; $i<$n; $i++)
-                    {
-                      echo '<div class="col-sm-8 ">';
-                      $row = mysqli_fetch_row($run);
-                      echo  '<div class="blog-post">';
-                      echo   '<h2 class="book-title">'.$row[0].'</h2>';
-                      //echo "  BY\n";
-                      echo  '<p>'.$row[1].'</p>';
-                      echo'</div>';
-                      echo'</div>';
-                                           
-                    }
-                  }
-                      
-                 ?>
-             </ul>
-             </div><!-- /.blog-post -->
+              <div class="input-group">
+              <select type="text" class="form-control" placeholder="Username" name="coursename">
+                         
+              <?php 
+              $tr = $_SESSION['user_id'];
+              $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
+              $rs = mysqli_query($connection,$query);
+              $nm = mysqli_num_rows($rs);
+              for( $i=0; $i<$nm; $i++)
+              {
+                  $row = mysqli_fetch_row($rs);
+                  echo '<option>'.$row[0].'</option>';
+              }
 
+              ?>
 
-        </div><!-- /.blog-main -->
-
-        <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
-        <!--search input -->
-        <div class="well">
-
-          <form method="post" action="teacher_books.php">
-                
-          <div class="col-sm-6">
-          <select class="form-control" name="coursename" > 
-                  
-          <?php 
-          $tr = $_SESSION['user_id'];
-          $query = "SELECT COURSE_NAME FROM courses WHERE TR_ID='$tr'";
-          $rs = mysqli_query($connection,$query);
-          $nm = mysqli_num_rows($rs);
-          for( $i=0; $i<$nm; $i++)
-          {
-              $row = mysqli_fetch_row($rs);
-              echo '<option>'.$row[0].'</option>';
-          }
-
-          ?>
-
-          </select>
-          </div>
-           <button type="submit" name="courseid" class="btn btn-primary">Submit</button>
+             </select>
+            <span class="input-group-btn">
+              <button class="btn btn-success" type="submit">Select Course</button>
+            </span>
+          
           </form>
-
-            </div>
+          </div>
+             
+          </div>
+          </div>
          
-         
-
-        </div><!-- /.blog-sidebar -->
-
+    <div class="col-md-12 col-lg-offset-0">
+      <?php 
+      
+        if(isset($_POST['coursename']))
+        {
+          $cname = $_POST['coursename'];
+          $fetch_id = "SELECT COURSE_ID from courses WHERE COURSE_NAME = '$cname'";
+          $rslt = mysqli_query($connection,$fetch_id);
+          $cid = mysqli_fetch_row($rslt);
+    
+          $qu = "SELECT BOOK_NAME, AUTHOR from books WHERE COURSE_ID= '$cid[0]'";
+          $run = mysqli_query($connection,$qu);
+          
+          $n = mysqli_num_rows($run);
+           echo' <div class="col-lg-8">';
+            echo' <table class="table table-bordered">';
+            echo' <thead>';
+            echo' <tr class="success">';
+            echo' <th>#</th>';
+            echo' <th>BOOK NAME</th>';
+            echo' <th>AUTHOR</th>';
+            echo' </tr>';
+            echo' </thead>';
+            echo' <tbody>';
+            $i=1;
+            while($row=mysqli_fetch_row($run))
+            {
+              echo "<tr>
+                      <td>{$i}</td>
+                      <td>{$row[0]}</td>
+                      <td>{$row[1]}</td>
+                      </tr>";
+                  $i++;                     
+            }
+            echo' </tbody>';
+            echo' </table>';
+            echo' </div>';
+        }
+            
+       ?>
+  
+      </div>
+        
       </div><!-- /.row -->
 
     <!--footer-->

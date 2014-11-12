@@ -171,7 +171,7 @@
                               $n = mysqli_num_rows($rs);
                               for($i=0; $i<$n; $i++)
                               {
-                                echo '<div class="col-sm-8 ">';
+                                
                                 $row = mysqli_fetch_row($rs);
                                 echo '<div class="well" style="margin-top:20px; background-color:#E5F1C8">';
                                 echo '<div class="blog-post">';
@@ -195,15 +195,15 @@
                                         $all = mysqli_fetch_row($p);  
                                         echo '<ul>';
                                         echo '<li>';
-                                        echo '<p class="blog-post-meta">'.$all[1].' Commented on '.$all[2].'</p>';
-                                        echo '<p >'.$all[0]. '</p>';
+                                        echo '<p class="blog-post-meta">'.$all[1].' on '.$all[2].'</p>';
+                                        echo '<p style="font-weight:bold">'.$all[0]. '</p>';
                                         echo  '</li>';
                                         echo '</ul>';
                                     }
-                                     echo '<hr>';
-                                     echo '<div class="col-lg-8">
+                                     
+                                     echo '
                                           <form action="students_blog.php" method="post" role="form">
-                                            <div class="input-group">
+                                            <div  class="input-group ">
                                               <input type="hidden" name="reload" value="0">
                                               <input type="hidden" name="postid" value="'.$row[0].'">
                                               <input type="text" name="comment" class="form-control">
@@ -211,16 +211,11 @@
                                                 <button class="btn btn-primary" name="go" type="submit">comment</button>
                                               </span>
                                               </form>
-                                            </div><!-- /input-group -->
-                                          </div><!-- /.col-lg-6 -->
-                                        </div><!-- /.row -->';
-                                      
+                                            </div><!-- /input-group -->';
                                      echo '</div>';
                                      echo '</div>';
                                 }
-                                echo '</div>';
-                                // ./well
-                                echo '</div>';
+                                
                                 
                             } 
                             else
@@ -234,7 +229,7 @@
                               for($i=0; $i<$n; $i++)
                               {
 
-                                echo '<div class="col-sm-8 ">';
+                                
                                 $row = mysqli_fetch_row($rslt);
                                 echo '<div class="well" style="margin-top:20px; background-color:#E5F1C8">';
                                 echo '<div class="blog-post">';
@@ -258,14 +253,14 @@
                                         $all = mysqli_fetch_row($p);  
                                         echo '<ul>';
                                         echo '<li>';
-                                        echo '<p class="blog-post-meta">'.$all[1].' Commented on '.$all[2].'</p>';
-                                        echo '<p >'.$all[0]. '</p>';
+                                        echo '<p class="blog-post-meta">'.$all[1].' on '.$all[2].'</p>';
+                                        echo '<p style="font-weight:bold">'.$all[0]. '</p>';
                                         echo  '</li>';
                                         echo '</ul>';
                                     }
-                                     echo '<hr>';
-                                     echo '<div class="col-lg-8">
-                                          <form action="students_blog.php" method="post" role="form">
+                                     
+                                     echo '<form action="students_blog.php" method="post" role="form">
+                                            
                                             <div class="input-group">
                                               <input type="hidden" name="reload" value="0">
                                               <input type="hidden" name="postid" value="'.$row[0].'">
@@ -273,43 +268,27 @@
                                               <span class="input-group-btn">
                                                 <button class="btn btn-primary" name="go" type="submit">comment</button>
                                               </span>
-                                              </form>
                                             </div><!-- /input-group -->
-                                          </div><!-- /.col-lg-6 -->
-                                        </div><!-- /.row -->';
+                                          
+                                        </form>';
                                       
                                      echo '</div>';
                                      echo '</div>';
                                 }
-                                echo '</div>';
-                                // ./well
-                                echo '</div>';
+                                
                             }  
                             echo '</div>';
                           ?>
          
-        </div><!-- /.row -->        
+        
                          
-                    <div class="col-lg-3 col-lg-offset-1">
+                    <div class="col-lg-4 ">
                     <br /><br /><br /><br /><br /><br />  
                     <div class="well" style="background-color:#c0d6e4">
                     <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                    </div>
-                    <!-- /.input-group -->
-                    </div>
-                      
-                    
                     <form method="post" action="students_blog.php">
-                    <div class="col-sm-12">
                     <div class="input-group">
-                      <select type="text" class="form-control" placeholder="Username" name="coursename">
+                    <select type="text" class="form-control" placeholder="Username" name="coursename">
                           <?php
                             $id = $_SESSION['user_id']; 
                             $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
@@ -325,21 +304,15 @@
                       <span class="input-group-btn">
                         <button class="btn btn-success" type="submit">Filter</button>
                       </span>
+                      </div>
                     </div>
-                  </div>
-                  </form>
-                  <!--<ul class="list-group">
-                    php code has to go here to autogenerate the courses corresponding to student
-                      <li class="list-group-item active">Courses:</li>
-                      <li class="list-group-item">Computer Architecture</li>
-                      <li class="list-group-item">Data Structures</li>
-                      <li class="list-group-item">Analog and Digital</li>
-                      <li class="list-group-item">Automata Theory</li>
-                        </ul>
-                      -->
+                    </form>
+                    <!-- /.input-group -->
+                    </div>
+                    </div>  
                     
-                    </div> 
-
+                    
+                    
                       <div class="col-lg-12">   
                                
                         <hr>
