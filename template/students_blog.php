@@ -186,7 +186,7 @@
                                      echo '
                                           <form action="students_blog.php" method="post" role="form">
                                             <div  class="input-group ">
-                                              <input type="hidden" name="reload" value="0">
+                                              <input type="hidden" name="reload" value="'.$cname.'">
                                               <input type="hidden" name="postid" value="'.$row[0].'">
                                               <input type="text" name="comment" class="form-control">
                                               <span class="input-group-btn">

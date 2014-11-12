@@ -27,6 +27,7 @@
           <a class="blog-nav-item" href="../template/teacher_home.php">Home</a>
           <a class="blog-nav-item" href="../template/teacher_books.php">Books</a>
           <a class="blog-nav-item" href="../template/teacher_posts.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="../template/teacher_events.php">Events</a>
           <a class="blog-nav-item" href="../template/teacher_account.php">MyAccount</a>
           <a class="blog-nav-item" href="../public/logout.php">Logout</a>
       </nav>

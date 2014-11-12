@@ -6,15 +6,15 @@
     
     $content = $_POST['content'];
     $course_name = $_POST['coursename'];
-    $post_heading = $_POST['heading'];
+    
 
-    if(isset($content) && isset($course_name) && isset($post_heading))
+    if(isset($content) && isset($course_name) )
     {
         $query = "SELECT COURSE_ID from courses where COURSE_NAME = '$course_name'";
         $cn = mysqli_query($connection,$query);
         $cid = mysqli_fetch_row($cn);
 
-        $query = "INSERT INTO posts(POST_TITLE,CONTENT,COURSE_ID) VALUES ('$post_heading','$content','$cid[0]')";
+        $query = "INSERT INTO posts(CONTENT,COURSE_ID) VALUES ('$content','$cid[0]')";
         $rs = mysqli_query($connection,$query);
 
         if($rs)
