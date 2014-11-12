@@ -270,17 +270,33 @@
                     <h4>Blog Search</h4>
                     <form method="post" action="students_blog.php">
                     <div class="input-group">
-                    <select type="text" class="form-control" placeholder="Username" name="coursename">
-                          <?php
+                    <?php
+                    /*if(isset($_POST['coursename']))
+                      {
+                            $cname = $_POST['coursename'];
+                            echo' <select type="text" class="form-control" placeholder="Username" name="coursename" value="'.$cname.'">';
+                      }
+                      else*/
+                          echo' <select type="text" class="form-control" placeholder="Username" name="coursename">';
+
+                            if(isset($_POST['coursename']))
+                                $cname = $_POST['coursename'];
+                            else
+                                $cname = 0;
+
                             $id = $_SESSION['user_id']; 
                             $query = "SELECT `COURSE_NAME` FROM `courses` WHERE `COURSE_ID` IN (select `COURSE_ID` from `enrolled in` where `STUDENT_ID` = '$id' )";
                             $rs = mysqli_query($connection,$query);
                             $nm = mysqli_num_rows($rs);
+                            
                             for( $i=0; $i<$nm; $i++)
                             {
                               $row = mysqli_fetch_row($rs);
-                              echo '<option>'.$row[0].'</option>';
-                            } 
+                              if($row[0] === $cname)
+                                echo' <option selected>'.$row[0].'</option>';
+                              else
+                                echo' <option>'.$row[0].'</option>';
+                            }
                       ?>
                       </select>
                       <span class="input-group-btn">

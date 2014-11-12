@@ -131,17 +131,31 @@
                     <form method="post" action="students_syllabus.php"> 
                     <div class="col-lg-4">
                     <div class="input-group">
-                      <select type="text" class="form-control" placeholder="Username" name=courseid>
+                      <select type="text" class="form-control" placeholder="Username" name="courseid">
                           <?php 
+
                           $tr = $_SESSION['user_id'];
                           $query = "SELECT COURSE_ID FROM `enrolled in` WHERE STUDENT_ID='$tr'";
                           $rs = mysqli_query($connection,$query);
                           $nm = mysqli_num_rows($rs);
+
+                          if(isset($_POST['courseid']))
+                            $cid = $_POST['courseid'];
+                          else
+                            $cid = 0;
+
                           for( $i=0; $i<$nm; $i++)
                           {
+
                               $row = mysqli_fetch_row($rs);
-                              $que = "SELECT COURSE_NAME FROM `courses` WHERE COURSE_ID='$row[0]'";  
-                              echo '<option>'.$row[0].'</option>';
+                              /*$que = "SELECT COURSE_NAME FROM `courses` WHERE COURSE_ID='$row[0]'";
+                              $rslt = mysqli_query($connection,$que);
+                              $row2 = mysqli_fetch_row($rslt);*/
+                              if($row[0] === $cid)
+                                echo' <option selected>'.$row[0].'</option>';
+                              else
+                                echo' <option>'.$row[0].'</option>';
+                              
                           }
 
                           ?>
@@ -161,14 +175,18 @@
                              $qu = "SELECT SYLLABUS from courses where COURSE_ID ='$cid'";
                              $run = mysqli_query($connection,$qu);
                              $path = mysqli_fetch_row($run);
-                             if(isempty($path[0])){
-                              echo '<h3>image not available</h3>';
-                             }
-                             else{
-                             $path[0] = "../uploads/".$path[0];
 
-                             echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
-                           }
+                             if($path[0] === "")
+                             {
+                                //echo' <br><br>';
+                                //echo' <h3>image not available</h3>';
+                                echo '<img src="../uploads/contentUnavailable.png" style="margin-top:50px; margin-left:20px">';
+                             }
+                             else
+                             {
+                                $path[0] = "../uploads/".$path[0];
+                                echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
+                             }
                           }
 
                           else
@@ -178,11 +196,18 @@
                                  $query = "SELECT SYLLABUS from courses where COURSE_ID in (select COURSE_ID from `enrolled in` where STUDENT_ID = '$id') limit 1";
                                  $rslt = mysqli_query($connection,$query);
                                  $path = mysqli_fetch_row($rslt);
-                                 echo $path[0].'sush';
-                                 
-                                 $path[0] = "../uploads/".$path[0];
-                                 echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
-                                
+
+                                 if($path[0] === "")
+                                 {
+                                    //echo' <br><br>';
+                                    echo '<img src="../uploads/contentUnavailable.png" style="margin-top:50px; margin-left:20px">';
+                                    //echo' <h3>image not available</h3>';
+                                 }
+                                 else
+                                 {
+                                    $path[0] = "../uploads/".$path[0];
+                                    echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
+                                 }
                                  
                             }
 
