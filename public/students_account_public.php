@@ -104,6 +104,10 @@
                     </li>
                 </ul>
             </nav>
+        <div id="page-wrapper">
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-10 col-md-offset-1" >
 <?php
 
 	$oldpass = $_POST['oldpass'];
@@ -134,16 +138,17 @@
 	
 	    if($rs)
         {
-            echo' <div id="page-wrapper">
-            <div class="container-fluid">
-            <div class="container"><br /><br/><h1>'."$msg".'</h1></div>
-            </div></div>';
+            echo' 
+            <br /><br/><h1>'.$msg.'</h1>
+            ';
 
         }
             
 
     ?>
-     
+     </div>
+    </div>
+    
      <div class="push"></div>
     <div class="blog-footer">
       <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>

@@ -1,7 +1,27 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php
 
+    $oldpass = $_POST['oldpass'];
+    $newpass = $_POST['newpass'];
+    $conf_newpass = $_POST['conf_newpass'];
+    $id = $_SESSION['user_id'];
+
+        //insert query
+    if(!empty($oldpass)){
+        $query = "SELECT * FROM student WHERE STUDENT_ID = '$id' and password = '$oldpass'";
+        $rs = mysqli_query($connection,$query);
+        $nm = mysqli_num_rows($rs);
+        if($nm==1 and $newpass==$conf_newpass){
+            $query2 = "UPDATE student SET password='$newpass' WHERE STUDENT_ID ='$id'";
+            $rs2 = mysqli_query($connection,$query2);
+            $msg = "Password changed successfully!";
+        }  
+        else{
+            $msg = "Please enter the correct old password or re-check the new password";
+        }
+        echo '
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,16 +62,16 @@
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
-                   <?php 
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ';
+            
                         $id = $_SESSION['user_id'];
                         $query = "SELECT STUDENT_NAME FROM student WHERE STUDENT_ID='$id'";
                         $rs = mysqli_query($connection,$query);
                         $name=mysqli_fetch_row($rs);
                         echo $name[0];
                         
-                    ?> 
-                    <b class="caret"></b></a>
+                    
+                    echo '<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="students_profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -104,60 +124,19 @@
                     </li>
                 </ul>
             </nav>
-
         <div id="page-wrapper">
         <div class="container-fluid">
         <div class="row">
-            
-                 
-            <div class="col-md-10 col-md-offset-1">
-              <form class="form-horizontal" role="form" method="post" action="students_account_public.php">
-               <br /><br />
-                <fieldset>
-                    
-                  <!-- Form Name -->
-                  <legend>Change Password</legend>
+        <div class="col-md-10 col-md-offset-1" >
 
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="textinput">Old Password</label>
-                    <div class="col-sm-6">
-                      <input type="password" name="oldpass" id="oldpass" placeholder="Enter old password" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="textinput">New Password</label>
-                    <div class="col-sm-6">
-                      <input type="password" name="newpass" id="newpass" placeholder="Enter new password" class="form-control">
-                    </div>
-                  </div>
-                  <!-- Text input-->
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="textinput">Confirm Password</label>
-                    <div class="col-sm-6">
-                      <input type="password" name="conf_newpass" id="conf_newpass" placeholder="re-enter new password" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-7">
-                      <div class="pull-right">
-                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                      </div>
-                    </div>
-                  </div>
-
-              
-          </fieldset>
-              </form>
-    </div><!-- /.col-lg-12 -->';
-
-    </div><!-- /.row -->
+';
+        echo' 
+        <br /><br/><h1>'.$msg.'</h1>
+        ';   
+        echo '  </div>
     </div>
     
-
-<!--footer-->
-    <div class="push"></div>
+     <div class="push"></div>
     <div class="blog-footer">
       <p>project by <a href="#">Sushmita-Sharan-Ashar</a></p>
     </div>
@@ -186,3 +165,11 @@
 </body>
 
 </html>
+';       
+    }  
+    else{
+        redirect_to("students_account.php");
+    } 
+    
+    ?>
+   
