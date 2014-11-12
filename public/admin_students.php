@@ -14,18 +14,24 @@
   $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
 
 
-    $studentid = $_POST['studentid'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $classid = $_POST['classid'];
-    $password = $_POST['password'];
-    $studentid2 = $_POST['studentid2'];
+    
 
 
     if(isset($_POST['add'])){
+		$studentid = $_POST['studentid'];
+		$firstname = $_POST['firstname'];
+		$lastname = $_POST['lastname'];
+		$classid = $_POST['classid'];
+		$contact = $_POST['contact'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		
             //insert query
-        if(!empty($studentid)){
-            $query = "INSERT INTO student VALUES('$studentid','$firstname $lastname','$password','$classid')";
+        if(!empty($studentid))
+        {
+            if($lastname === "")
+                $firstname=$firstname." ";
+            $query = "INSERT INTO student VALUES('$studentid','$firstname $lastname','$password','$classid','$contact','$email')";
             $rs = mysqli_query($r,$query);
             if($rs){
                 $msg = "New student record added!";
@@ -39,7 +45,7 @@
         } 
     }
 
-    else if (isset($_POST['edit'])){
+/*    else if (isset($_POST['edit'])){
         if(!empty($studentid)){
             $query = "UPDATE student SET student_id='$studentid', student_name='$firstname $lastname', password='$password', class_id='$classid' ";
 			$query .= "WHERE student_id='{$studentid}'";
@@ -55,9 +61,10 @@
 		else{
             redirect_to("../template/admin_student.php");
         } 
-    }
+    } */
 
     else if(isset($_POST['delete'])){
+	$studentid2 = $_POST['sid'];
         if(!empty($studentid2)){
             $query = "DELETE FROM student WHERE STUDENT_ID = '$studentid2'";
                 $rs = mysqli_query($r,$query);
@@ -69,7 +76,7 @@
         }
     }
 
-    if($rs){
+    if(1){
         require 'admin_header.php';
         echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
         require 'footer.php';

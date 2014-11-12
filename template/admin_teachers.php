@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin:Teachers</title>
+    <title>Admin:Teacher</title>
 
     <script src="js/jquery-1.11.0.js"></script>
 
@@ -31,8 +31,8 @@
         
         });
     </script>
-   
-
+	
+	
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
@@ -50,7 +50,7 @@
           <a class="blog-nav-item" href="admin_students.php">Students</a>
           <a class="blog-nav-item active" href="admin_teachers.php">Teachers</a>
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
-          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts & Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
           <a class="blog-nav-item" href="../public/logout.php">Logout</a>
        </nav>
@@ -98,10 +98,10 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Email-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="email"  placeholder="Enter Email-ID" class="form-control" >
+              <input type="text" name="email"  placeholder="Enter Email-ID" class="form-control">
             </div>
           </div>
-
+		  
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
@@ -117,9 +117,8 @@
         <fieldset>
 
           <!-- Form Name -->
-
           <legend>Delete Teacher Account | <a href="admin_view_teachers.php">view</a></legend>
-            
+
            <?php 
            echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
@@ -137,17 +136,6 @@
                 </div>
             </div>';
             ?>
-
-          <legend>Delete Teacher Account | <a href="admin_view_teachers.php">view</a></legend>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
-            <div class="col-sm-10">
-              <input type="text" name="teacherid2" id="teacherid2" placeholder="Enter Teacher-ID without spaces" class="form-control">
-            </div>
-          </div>
-
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -173,11 +161,11 @@
           <legend>Edit Teacher Account | <a href="admin_view_teachers.php">view</a></legend>';
             
                 
-            echo '<div class="form-group">
+             echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
                 <div class="col-sm-10">
-                   <select id="e2" style="width:500px" name="trid" >'; 
-                   
+                   <select id="e2" style="width:500px" name="trid" id="trid" >'; 
+                                       
                     $query = "SELECT TR_ID FROM teacher ";
                     $rs = mysqli_query($connection,$query);
                     $nm = mysqli_num_rows($rs);
@@ -192,7 +180,7 @@
              echo '<div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="pull-right">
-                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                    <button type="submit" name="edit" class="btn btn-warning">Edit</button>
                   </div>
                 </div>
               </div>

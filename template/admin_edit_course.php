@@ -10,15 +10,15 @@
           
         <?php 
           echo '<div class="col-md-10 col-md-offset-1">';
-          if(isset($_POST['add'])){
-             echo  '<form class="form-horizontal" role="form" method="post" action="admin_course.php">
+          if(isset($_POST['edit'])){
+             echo  '<form class="form-horizontal" role="form" method="post" action="../public/admin_edit_course.php" enctype="multipart/form-data">
                   <fieldset>
                     <legend>Edit Course</legend>';
                           
                        echo '<div class="form-group">
                           <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
                           <div class="col-sm-10">
-                          <input type="text"  value="'.$_POST['cid'].'" disabled="disabled" class="form-control" >
+                          <input type="text" name="courseid" id="courseid" value="'.$_POST['cid'].'" class="form-control" readonly >
                           </div>
                           </div>';
                           
@@ -31,11 +31,11 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Course Name</label>
                 <div class="col-sm-10">
-                  <input type="text" name="cname" value="'.$row[0].'" class="form-control">
+                  <input type="text" name="coursename" id="coursename" value="'.$row[0].'" class="form-control">
                 </div>
               </div>';
-
-              
+			  
+			  
            echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Teacher-ID</label>
                 <div class="col-sm-10">
@@ -51,8 +51,8 @@
                   echo  '</select>
                 </div>
             </div>';
-            
 
+ 
              echo '<div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Syllabus</label>
             <div class="col-sm-10">

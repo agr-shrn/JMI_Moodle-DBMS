@@ -18,30 +18,12 @@
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $password = $_POST['password'];
-    $teacherid2 = $_POST['trid'];
 	$email = $_POST['email'];
-
-
-    if(isset($_POST['add'])){
-            //insert query
+ //   $teacherid2 = $_POST['teacherid2'];
+	
+    if (isset($_POST['submit'])){
         if(!empty($teacherid)){
-            $query = "INSERT INTO teacher VALUES('$teacherid','$firstname $lastname','$password','$email')";
-            $rs = mysqli_query($r,$query);
-            if($rs){
-                $msg = "New teacher record added!";
-            }  
-            else{
-                $msg = "Please enter a valid teacher-id.";
-            }
-        }  
-        else{
-            redirect_to("../template/admin_teacher.php");
-        } 
-    }
-
-    else if (isset($_POST['edit'])){
-        if(!empty($teacherid)){
-            $query = "UPDATE teacher SET tr_id='$teacherid', tr_name='$firstname $lastname', password='$password'  ";
+            $query = "UPDATE teacher SET tr_id='$teacherid', tr_name='$firstname $lastname', password='$password', email='$email' ";
 			$query .= "WHERE tr_id='{$teacherid}'";
             mysqli_query($r,$query);
 			$rs=1;
@@ -56,19 +38,7 @@
             redirect_to("../template/admin_teacher.php");
         } 
     }
-
-    else if(isset($_POST['delete'])){
-        if(!empty($teacherid2)){
-            $query = "DELETE FROM teacher WHERE TR_ID = '$teacherid2'";
-                $rs = mysqli_query($r,$query);
-                $msg = "Teacher record deleted successfully!";
-
-        }
-        else{
-            $msg = "Please enter a valid teacher-id";
-        }
-    }
-
+	
     if(1){
         require 'admin_header.php';
         echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';

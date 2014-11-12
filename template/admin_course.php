@@ -13,13 +13,12 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Admin: Courses</title>
-    <script src="js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+     <link href="css/style.css" rel="stylesheet">
     <!--select2.js-->
     <link href="js/select2/select2.css" rel="stylesheet"/>
     <script src="js/select2/select2.js"></script>
@@ -36,8 +35,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-     <link href="css/style.css" rel="stylesheet">
-   
+     <link href="css/style.css" rel="stylesheet"> 
+ 
   </head>
 
   <body>
@@ -50,7 +49,7 @@
           <a class="blog-nav-item" href="admin_students.php">Students</a>
           <a class="blog-nav-item" href="admin_teachers.php">Teachers</a>
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
-          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts & Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
           <a class="blog-nav-item" href="../public/logout.php">Logout</a>
        </nav>
@@ -59,6 +58,7 @@
 
     <div class="container">
         <div class="row">
+
 
     <div class="col-md-10 col-md-offset-1">
       <form class="form-horizontal" role="form" method="post" action="../public/admin_course.php" enctype="multipart/form-data" >
@@ -71,7 +71,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="courseid" id="courseid" placeholder="Enter Course-ID without spaces" class="form-control" required="required">
+              <input type="text" name="courseid" id="courseid" placeholder="Enter Course-ID without spaces" class="form-control">
             </div>
           </div>
 
@@ -169,7 +169,7 @@
              echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
                 <div class="col-sm-10">
-                   <select id="e3" style="width:550px" name="cid" >'; 
+                   <select id="e3" style="width:550px" name="cid" >';                                      
                     
                     $query = "SELECT COURSE_ID FROM courses ";
                     $rs = mysqli_query($connection,$query);
@@ -185,7 +185,7 @@
              echo '<div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="pull-right">
-                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                    <button type="submit" name="edit" id="edit" class="btn btn-warning">Edit</button>
                   </div>
                 </div>
               </div>
