@@ -32,7 +32,7 @@
           <a class="blog-nav-item" href="admin_students.php">Students</a>
           <a class="blog-nav-item" href="admin_teachers.php">Teachers</a>
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
-          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts & Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
           <a class="blog-nav-item" href="../public/logout.php">Logout</a>
        </nav>

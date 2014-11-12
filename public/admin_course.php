@@ -13,12 +13,18 @@
 
   $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
 
+	$file_name = $_FILES['syllabus']['name'];
+	$file_type = $_FILES['syllabus']['type'];
+	$file_tmp_name = $_FILES['syllabus']['tmp_name'];
+	$location = '../uploads/';
+	
 
+	
     $courseid = $_POST['courseid'];
     $coursename = $_POST['coursename'];
-    $teacherid = $_POST['teacherid'];
-    $syllabus = $_POST['syllabus'];
-    $courseid2 = $_POST['courseid2'];
+    $teacherid = $_POST['trid'];
+    $syllabus = $file_name;
+    $courseid2 = $_POST['cid'];
 
 
     if(isset($_POST['add'])){
@@ -28,7 +34,15 @@
             $query = "INSERT INTO courses VALUES('$courseid','$coursename','$syllabus','$teacherid')";
 			$rs = mysqli_query($r,$query);
 			if($rs){
-                $msg = "New course record added!";
+				$msg = "New course record added!";
+				if(isset($file_name)){
+					if(!empty($file_name)){
+						move_uploaded_file($file_tmp_name,$location.$file_name);
+					}
+				}	
+				else{
+					$msg = "Error! File not uploaded. But the new course has been added.";
+				} 
             }  
             else{
                 $msg = "Please enter a valid course-id.";
@@ -40,7 +54,7 @@
 
     }
 
-    else if (isset($_POST['edit'])){
+ /*   else if (isset($_POST['edit'])){
         if(!empty($courseid)){
             $query = "UPDATE courses SET course_id='$courseid', course_name='$coursename', syllabus='$syllabus', tr_id='$teacherid'";
 			$query .= "WHERE course_id='{$courseid}'";
@@ -57,7 +71,7 @@
 		else{
             redirect_to("../template/admin_course.php");
         } 
-    }
+    }	*/
 
     else if(isset($_POST['delete'])){
         if(!empty($courseid2)){
@@ -71,11 +85,12 @@
         }
     }
 
-   
+    if(1){
         require 'admin_header.php';
         echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
         require 'footer.php';
 
-   
+    }
+
 
     ?>

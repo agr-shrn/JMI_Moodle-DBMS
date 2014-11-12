@@ -161,8 +161,14 @@
                              $qu = "SELECT SYLLABUS from courses where COURSE_ID ='$cid'";
                              $run = mysqli_query($connection,$qu);
                              $path = mysqli_fetch_row($run);
+                             if(isempty($path[0])){
+                              echo '<h3>image not available</h3>';
+                             }
+                             else{
                              $path[0] = "../uploads/".$path[0];
+
                              echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
+                           }
                           }
 
                           else
@@ -172,8 +178,12 @@
                                  $query = "SELECT SYLLABUS from courses where COURSE_ID in (select COURSE_ID from `enrolled in` where STUDENT_ID = '$id') limit 1";
                                  $rslt = mysqli_query($connection,$query);
                                  $path = mysqli_fetch_row($rslt);
+                                 echo $path[0].'sush';
+                                 
                                  $path[0] = "../uploads/".$path[0];
-                                 echo '<img src="'.$path[0].'">';
+                                 echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">'; 
+                                
+                                 
                             }
 
                     ?>

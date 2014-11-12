@@ -14,7 +14,7 @@
 
     <title>Admin: Class</title>
     <script src="js/jquery-1.11.0.js"></script>
-
+	
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,7 +43,7 @@
           <a class="blog-nav-item" href="admin_students.php">Students</a>
           <a class="blog-nav-item" href="admin_teachers.php">Teachers</a>
           <a class="blog-nav-item active" href="admin_class.php">Classes</a>
-          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts & Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
           <a class="blog-nav-item" href="../public/logout.php">Logout</a>
       </nav>
@@ -70,7 +70,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Department</label>
             <div class="col-sm-10">
-                 <select id="e1"  name="department"  >
+                 <select id="e1" name="department" >
                   <option value="computer engineering">computer engineering</option>
                   <option value="electrical engineering" >electrical engineering</option>
                   <option value="civil engineering">civil engineering</option>
@@ -84,7 +84,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Attendance</label>
             <div class="col-sm-10">
-               <input type="file" name="attendance" id="attendance">    
+               <input type="file" name="attendance">    
             </div>
           </div>
 
@@ -108,7 +108,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Results</label>
             <div class="col-sm-10">
-                 <input type="file" name="results" id="results">
+                 <input type="file" name="results">
               </div>
           </div>
 
@@ -125,7 +125,6 @@
         
         <fieldset>
         <form class="form-horizontal" role="form" method="post" action="../public/admin_class.php" >
-
           <legend>Delete class record | <a href="admin_view_classes.php">view</a></legend>
            <?php
             echo '<div class="form-group">
@@ -143,16 +142,6 @@
                 </div>
             </div>';
             ?>
-
-          <legend>Delete class record | <a href="admin_view_classes.php">view</a></legend>
-            <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
-            <div class="col-sm-10">
-              <input type="text" name="classid2" placeholder="Enter Class-id without spaces" class="form-control" required="requireds">
-            </div>
-          </div>
-
->>>>>>> origin/master
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
@@ -181,7 +170,7 @@
              echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
                 <div class="col-sm-10">
-                   <select id="e2" style="width:500px" name="cid" >'; 
+                   <select id="e2" style="width:500px" name="cid" id="cid">'; 
                     $query = "SELECT CLASS_ID FROM class ";
                     $rs = mysqli_query($connection,$query);
                     $nm = mysqli_num_rows($rs);
@@ -196,7 +185,7 @@
              echo '<div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="pull-right">
-                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                    <button type="submit" name="edit" class="btn btn-warning">Edit</button>
                   </div>
                 </div>
               </div>

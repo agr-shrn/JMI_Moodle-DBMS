@@ -32,7 +32,6 @@
     </script>
    
 
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -50,7 +49,7 @@
           <a class="blog-nav-item active" href="admin_students.php">Students</a>
           <a class="blog-nav-item" href="admin_teachers.php">Teachers</a>
           <a class="blog-nav-item" href="admin_class.php">Classes</a>
-          <a class="blog-nav-item" href="admin_post.php">Posts$Comments</a>
+          <a class="blog-nav-item" href="admin_post.php">Posts & Comments</a>
           <a class="blog-nav-item" href="admin_account.php">MyAccount</a>
           <a class="blog-nav-item" href="../public/logout.php">Logout</a>
        </nav>
@@ -104,17 +103,17 @@
             </div>
           </div>
 
-          <div class="form-group">
+			<div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Contact</label>
             <div class="col-sm-10">
-              <input type="text" name="studentid" id="contact" placeholder="Enter contact number" class="form-control" required="required">
+              <input type="text" name="contact" id="contact" placeholder="Enter contact number" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Email-ID</label>
             <div class="col-sm-10">
-              <input type="text" name="studentid" id="email" placeholder="Enter email-ID " class="form-control" required="required">
+              <input type="text" name="email" id="email" placeholder="Enter email-ID " class="form-control">
             </div>
           </div>
 
@@ -210,7 +209,7 @@
              echo '<div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="pull-right">
-                    <button type="submit" name="add" class="btn btn-warning">Edit</button>
+                    <button type="submit" name="edit" class="btn btn-warning">Edit</button>
                   </div>
                 </div>
               </div>

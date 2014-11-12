@@ -10,17 +10,17 @@
           
         <?php 
           echo '<div class="col-md-10 col-md-offset-1">';
-          if(isset($_POST['add'])){
-             echo  '<form class="form-horizontal" role="form" method="post" action="admin_course.php">
+          if(isset($_POST['edit'])){
+             echo  '<form class="form-horizontal" role="form" method="post" action="../public/admin_edit_class.php" enctype="multipart/form-data">
                   <fieldset>
-                    <legend>Edit Course</legend>';
+                    <legend>Edit Class</legend>';
                       //if(!isset($_POST['submit']))
                       //{
                           
                        echo '<div class="form-group">
-                          <label class="col-sm-2 control-label" for="textinput">Course-ID</label>
+                          <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
                           <div class="col-sm-10">
-                          <input type="text"  value="'.$_POST['cid'].'" disabled="disabled" class="form-control" >
+                          <input type="text" name="classid" id="classid" value="'.$_POST['cid'].'" class="form-control" readonly >
                           </div>
                           </div>';
                      
@@ -28,7 +28,7 @@
               <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Department</label>
             <div class="col-sm-10">
-                 <select class="form-control" name="department" >
+                 <select class="form-control" name="department" id="department" >
                   <option value="computer engineering">computer engineering</option>
                   <option value="electrical engineering" >electrical engineering</option>
                   <option value="civil engineering">civil engineering</option>
@@ -42,7 +42,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Attendance</label>
             <div class="col-sm-10">
-               <input type="file" name="attendance" id="attendance">    
+               <input type="file" name="attendance">    
             </div>
           </div>
 
@@ -50,7 +50,7 @@
           <div class="form-group">
            <label class="col-sm-2 control-label" for="textinput">Semester</label>
             <div class="col-sm-10">
-                 <select class="form-control" name="sem" >
+                 <select class="form-control" name="sem" id="sem">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -66,14 +66,14 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Results</label>
             <div class="col-sm-10">
-                 <input type="file" name="results" id="results">
+                 <input type="file" name="results">
               </div>
           </div>
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="pull-right">
-                    <button type="submit" name="submit" class="btn btn-warning">Submit</button>
+                    <button type="submit" name="submit" id="submit" class="btn btn-warning">Submit</button>
                   </div>
                 </div>
               </div>

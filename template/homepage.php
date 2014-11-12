@@ -42,7 +42,7 @@
             <div class="ui-group-buttons">
                 <button type="button" class="btn btn-primary btn-lg"><a href="teacher_signin.php">Faculty</a></button>
                 <div class="or or-lg"></div>
-                <button type="button" class="btn btn-success btn-lg"><a href="students_signin.php">Student</a></button>
+                <button type="button" class="btn btn-success btn-lg"><a href="students _signin.php">Student</a></button>
             </div>
             </p>
           </div>
