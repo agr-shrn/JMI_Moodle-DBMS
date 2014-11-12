@@ -43,9 +43,7 @@
       $run = mysqli_query($connection,$qu);
       $row = mysqli_fetch_row($run);
       echo '<div class="container">';
-      echo '<div class="blog-header">';
-      echo '<h1 class="blog-title">Welcome '.$row[0].'<br> to JMI-Moodle!</h1></br>';  
-      echo '</div>';
+      echo '<h3 class="blog-title" style="font-size:30px">Welcome '.$row[0].' !</h3>';  
       echo'</div>';
       ?>
 
