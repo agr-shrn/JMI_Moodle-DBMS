@@ -1,6 +1,8 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +29,7 @@
         $(document).ready(function() {
         $("#e1").select2({width:'resolve'});
         $("#e2").select2({width:'resolve'});
+        $("#e3").select2({width:'resolve'});
         });
     </script>
 
@@ -170,7 +173,7 @@
              echo '<div class="form-group">
                 <label class="col-sm-2 control-label" for="textinput">Class-ID</label>
                 <div class="col-sm-10">
-                   <select id="e2" style="width:500px" name="cid" id="cid">'; 
+                   <select id="e3" style="width:500px" name="cid" id="cid">'; 
                     $query = "SELECT CLASS_ID FROM class ";
                     $rs = mysqli_query($connection,$query);
                     $nm = mysqli_num_rows($rs);

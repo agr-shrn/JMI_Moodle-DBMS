@@ -2,7 +2,7 @@
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 <?php require_once("admin_header.php"); ?>
-
+<?php require_once("../includes/logged_in.php"); ?>
 
 <div class="container">
   <div class="row">

@@ -1,6 +1,9 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +36,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="students_dashboard.html">JMI-Moodle</a>
+                <a class="navbar-brand" href="students_dashboard.php">JMI-Moodle</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -55,7 +58,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="../publiclogout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="../public/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -114,8 +117,23 @@
                              $qu = "SELECT ATTENDANCE from class where CLASS_ID in (SELECT CLASS_ID from student where STUDENT_ID = '$id')";
                              $run = mysqli_query($connection,$qu);
                              $path = mysqli_fetch_row($run);
-                             $path[0] = "../uploads/".$path[0];
-                             echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">';
+                            
+                              if($path[0] === "")
+                             {
+
+                                //echo' <br><br>';
+                                //echo' <h3>image not available</h3>';
+                                echo '<img src="../uploads/contentUnavailable.png" style="margin-top:50px; margin-left:20px; ">';
+                             }
+                             else
+                             {
+                                trim($path[0]);
+                                $p = "../uploads/".$path[0];
+                                echo $p;
+                                //trim($p);
+                                echo '<img src="'.$p.'" style="margin-top:50px; margin-left:20px">';
+                             }
+                             
 
                         ?>
                         <hr>

@@ -4,6 +4,94 @@
 		"selected_items":
 		[
 			[
+				"course",
+				"courseid"
+			],
+			[
+				"ST",
+				"STUDENT_ID"
+			],
+			[
+				"S",
+				"SELECT"
+			],
+			[
+				"STU",
+				"STUDENT_NAME"
+			],
+			[
+				"even",
+				"event_date"
+			],
+			[
+				"event",
+				"event_date"
+			],
+			[
+				"eve",
+				"eventtime"
+			],
+			[
+				"SE",
+				"SEMESTER"
+			],
+			[
+				"CLASS",
+				"CLASS_ID"
+			],
+			[
+				"COUR",
+				"COURSE"
+			],
+			[
+				"que",
+				"query"
+			],
+			[
+				"BOO",
+				"BOOK_NAME"
+			],
+			[
+				"TR",
+				"TR_NAME"
+			],
+			[
+				"COURSE",
+				"COURSE_ID"
+			],
+			[
+				"CO",
+				"CONTACT"
+			],
+			[
+				"STUDE",
+				"STUDENT_ID"
+			],
+			[
+				"Comment",
+				"Commented"
+			],
+			[
+				"STUDEN",
+				"STUDENT_NAME"
+			],
+			[
+				"evet",
+				"event"
+			],
+			[
+				"EV",
+				"EVENT_DATE"
+			],
+			[
+				"EVE",
+				"EVENT"
+			],
+			[
+				"EVENT",
+				"EVENT_DATE"
+			],
+			[
 				"cone",
 				"connection"
 			],
@@ -16,27 +104,11 @@
 	"buffers":
 	[
 		{
-			"file": "/D/Paper/#bookbucket.json",
+			"file": "template/students_syllabus.php",
 			"settings":
 			{
-				"buffer_size": 24131,
+				"buffer_size": 10243,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/D/Paper/test.txt",
-			"settings":
-			{
-				"buffer_size": 9305,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "public/admin_login.php",
-			"settings":
-			{
-				"buffer_size": 965,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -85,58 +157,99 @@
 	"expanded_folders":
 	[
 		"/D/xampp/htdocs/JMI_Moodle-DBMS",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/template"
 	],
 	"file_history":
 	[
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit_class.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_header.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_course.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_home.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_courses.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_books.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_blog.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_attendance.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_syllabus.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_view.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_result.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_books.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/css/bootstrap.css",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_account_public.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/signin_css.css",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_dashboard.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_account.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_home.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_post.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_view.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_teachers.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit_class.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_account.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_books.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_events.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_home.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_signin.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_view.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_holiday.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_profile.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/students_signin.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_view_teachers.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_view_students.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_view_courses.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_teachers.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_view_classes.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_students.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_signin.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_post.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_account.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_class.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_course.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit_course.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit_students.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_edit_teachers.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_header.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/functions.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/logged_in.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_edit_course.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_login.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/footer.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/logout.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/students_courses.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/homepage.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_account.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_login.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_header.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/connection.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/session.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_events.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_account.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_students.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_edit_students.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/js/select2/select2_locale_th.js",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_header.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/students_account.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_course.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/config.php",
+		"/D/Github/Cmder/Launcher.ahk",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_post.php",
+		"/D/DBMS project/mock_stock/mock_stock/buy_stock.php",
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_view_posts.php",
+		"/D/Auxillary/7.html",
+		"/C/Users/Spare/Desktop/6.html",
+		"/C/Users/Spare/Desktop/7.html",
+		"/D/Paper/#bookbucket.json",
+		"/D/Paper/test.txt",
 		"/D/Github/book-bucket/fetch_new.py",
 		"/D/Github/book-bucket/fetch.py",
 		"/D/Github/book-bucket/collect_new.py",
 		"/D/Github/book-bucket/collect.py",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_books.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/JMI Moodle.sublime-project",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_course.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/teacher_account.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_post.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_account.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_account.php",
 		"/D/Powerpack/Sublime/Data/Packages/User/Preferences.sublime-settings",
 		"/D/Powerpack/Sublime/Data/Packages/Default/Preferences.sublime-settings",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_teachers.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_students.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_signin.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_post.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_home.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/admin_class.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_header.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_post.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/template/homepage.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_teachers.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_students.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_login.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/admin_class.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/teacher_login.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/logout.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/footer.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/config.php",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/README.md",
 		"/D/xampp/htdocs/JMI_Moodle-DBMS/public/fonts/glyphicons-halflings-regular.svg",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/constants.php",
-		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/connection.php"
+		"/D/xampp/htdocs/JMI_Moodle-DBMS/includes/constants.php"
 	],
 	"find":
 	{
-		"height": 37.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -150,6 +263,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"JMI",
+			"coursename",
+			"go",
+			"not enrolled",
+			"]",
+			"e1",
+			"e3",
+			"e2",
+			"e1",
+			"e3",
+			"e1",
+			"Select course",
+			"$enr",
+			"cid",
+			"teacher_post",
+			"view",
+			"posts",
+			"view",
+			"COURSE",
+			"view",
+			"table",
+			"filter",
+			"IN",
+			"$id",
+			"Username",
+			"$id",
+			"result",
 			"submit",
 			"$cname",
 			"header",
@@ -161,6 +301,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"STUDENT"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -171,81 +312,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/D/Paper/#bookbucket.json",
+					"file": "template/students_syllabus.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 24131,
+						"buffer_size": 10243,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/D/Paper/test.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9305,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "public/admin_login.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 965,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								1425,
+								1425
 							]
 						],
 						"settings":
@@ -255,7 +339,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 576.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -266,11 +350,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 26.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 37.0
 	},
 	"layout":
 	{
@@ -302,7 +386,7 @@
 	"project": "JMI Moodle.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -310,6 +394,22 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"book",
+				"template\\students_books.php"
+			],
+			[
+				"blog",
+				"template\\students_blog.php"
+			],
+			[
+				"atten",
+				"template\\students_attendance.php"
+			],
+			[
+				"student_re",
+				"template\\students_result.php"
+			],
 			[
 				"admin_edit",
 				"template\\admin_edit_class.php"
@@ -369,7 +469,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 210.0,
+	"side_bar_width": 208.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

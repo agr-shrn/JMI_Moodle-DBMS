@@ -1,6 +1,7 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="students_dashboard.html">JMI-Moodle</a>
+                <a class="navbar-brand" href="students_dashboard.php">JMI-Moodle</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

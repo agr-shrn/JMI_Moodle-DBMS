@@ -1,6 +1,7 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,9 +47,35 @@
         <form class="form-horizontal" role="form" method="post" action="../public/teacher_books.php">
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">courseID</label>
-            <div class="col-sm-5">
-              <input type="text" name="courseid" placeholder="enter course-ID" class="form-control">
+            <label class="col-sm-2 control-label" for="textinput">Course ID</label>
+            <div class="col-sm-10" >
+             <div class="input-group">
+                      <select type="text" class="form-control" name="courseid" style="width:375px">
+                          <?php
+
+                            if(isset($_POST['courseid']))
+                                $cname = $_POST['courseid'];
+                            else
+                                $cname = 0;
+
+                            $tr = $_SESSION['user_id'];
+                            $query = "SELECT COURSE_ID FROM courses WHERE TR_ID='$tr'";
+                            $rs = mysqli_query($connection,$query);
+                            $nm = mysqli_num_rows($rs);
+
+                            for($i=0; $i<$nm; $i++)
+                            {
+                              $row = mysqli_fetch_row($rs);
+                              
+                              if($row[0] === $cname)
+                                echo' <option selected>'.$row[0].'</option>';
+                              else
+                                echo' <option>'.$row[0].'</option>';
+                              
+                            } 
+                      ?>
+                      </select>
+                      </div>
             </div>
           </div>
 
