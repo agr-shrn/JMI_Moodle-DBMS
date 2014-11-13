@@ -1,12 +1,13 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
 
 <?php 
 
     if(isset($_POST['go'])){
       
-        $comment = $_POST['comment'];
+         $comment = $_POST['comment'];
          $user_id = $_SESSION['user_id'];
          $post_id = $_POST['postid'];
          $query = "SELECT STUDENT_NAME FROM student where STUDENT_ID='$user_id'";
@@ -62,7 +63,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="students_dashboard.html">JMI-Moodle</a>
+                <a class="navbar-brand" href="students_dashboard.php">JMI-Moodle</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
