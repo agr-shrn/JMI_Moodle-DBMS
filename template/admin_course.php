@@ -13,7 +13,7 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Admin: Courses</title>
-    <script src="js/jquery-1.11.0.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
