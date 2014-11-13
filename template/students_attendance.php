@@ -114,8 +114,19 @@
                              $qu = "SELECT ATTENDANCE from class where CLASS_ID in (SELECT CLASS_ID from student where STUDENT_ID = '$id')";
                              $run = mysqli_query($connection,$qu);
                              $path = mysqli_fetch_row($run);
-                             $path[0] = "../uploads/".$path[0];
-                             echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">';
+                            
+                              if($path[0] === "")
+                             {
+                                //echo' <br><br>';
+                                //echo' <h3>image not available</h3>';
+                                echo '<img src="../uploads/contentUnavailable.png" style="margin-top:50px; margin-left:20px">';
+                             }
+                             else
+                             {
+                                 $path[0] = "../uploads/".$path[0];
+                                 echo '<img src="'.$path[0].'" style="margin-top:50px; margin-left:20px">';
+                             }
+                             
 
                         ?>
                         <hr>
