@@ -1,4 +1,4 @@
-<?php require_once("../includes/logged_in.php"); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

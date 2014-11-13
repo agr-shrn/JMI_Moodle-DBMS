@@ -127,8 +127,9 @@
                              }
                              else
                              {
-                                //trim($path[0]," ");
+                                trim($path[0]);
                                 $p = "../uploads/".$path[0];
+                                echo $p;
                                 //trim($p);
                                 echo '<img src="'.$p.'" style="margin-top:50px; margin-left:20px">';
                              }
