@@ -1,6 +1,7 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Admin: Courses</title>
-
+    <script src="js/jquery-1.11.0.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 

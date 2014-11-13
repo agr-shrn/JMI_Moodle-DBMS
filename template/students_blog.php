@@ -1,12 +1,13 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/logged_in.php"); ?>
 
 <?php 
 
     if(isset($_POST['go'])){
       
-        $comment = $_POST['comment'];
+         $comment = $_POST['comment'];
          $user_id = $_SESSION['user_id'];
          $post_id = $_POST['postid'];
          $query = "SELECT STUDENT_NAME FROM student where STUDENT_ID='$user_id'";
