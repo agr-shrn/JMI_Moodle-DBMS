@@ -1,21 +1,9 @@
 <?php
 
     include_once("../includes/functions.php");
-
+    include_once("../includes/session.php");
+    include_once("../includes/connection.php");
     
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
-  define("DB_PASS", "12345");
-  define("DB_NAME", "jmi_moodle");
-
-
-      //$r = mysqli_connect($host, $user, $password,$db);
-
-  $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
-
-
-    
-
 
     if(isset($_POST['add'])){
 		$studentid = $_POST['studentid'];
@@ -32,8 +20,8 @@
             if($lastname === "")
                 $firstname=$firstname." ";
             $query = "INSERT INTO student VALUES('$studentid','$firstname $lastname','$password','$classid','$contact','$email')";
-            $rs = mysqli_query($r,$query);
-            if($rs){
+            $connections = mysqli_query($connection,$query);
+            if($connections){
                 $msg = "New student record added!";
             }  
             else{
@@ -49,9 +37,9 @@
         if(!empty($studentid)){
             $query = "UPDATE student SET student_id='$studentid', student_name='$firstname $lastname', password='$password', class_id='$classid' ";
 			$query .= "WHERE student_id='{$studentid}'";
-            mysqli_query($r,$query);
-			$rs=1;
-            if(mysqli_affected_rows($r)){
+            mysqli_query($connection,$query);
+			$connections=1;
+            if(mysqli_affected_rows($connection)){
                 $msg = "Student record edited!";
             }  
             else{
@@ -67,7 +55,7 @@
 	$studentid2 = $_POST['sid'];
         if(!empty($studentid2)){
             $query = "DELETE FROM student WHERE STUDENT_ID = '$studentid2'";
-                $rs = mysqli_query($r,$query);
+                $connections = mysqli_query($connection,$query);
                 $msg = "Student record deleted successfully!";
 
         }

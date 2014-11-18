@@ -16,8 +16,8 @@
             //insert query
         if(!empty($teacherid)){
             $query = "INSERT INTO teacher VALUES('$teacherid','$firstname $lastname','$password','$email')";
-            $rs = mysqli_query($r,$query);
-            if($rs){
+            $connections = mysqli_query($connection,$query);
+            if($connections){
                 $msg = "New teacher record added!";
             }  
             else{
@@ -33,9 +33,9 @@
         if(!empty($teacherid)){
             $query = "UPDATE teacher SET tr_id='$teacherid', tr_name='$firstname $lastname', password='$password'  ";
 			$query .= "WHERE tr_id='{$teacherid}'";
-            mysqli_query($r,$query);
-			$rs=1;
-            if(mysqli_affected_rows($r)){
+            mysqli_query($connection,$query);
+			$connections=1;
+            if(mysqli_affected_rows($connection)){
                 $msg = "Teacher record edited!";
             }  
             else{
@@ -50,7 +50,7 @@
     else if(isset($_POST['delete'])){
         if(!empty($teacherid2)){
             $query = "DELETE FROM teacher WHERE TR_ID = '$teacherid2'";
-                $rs = mysqli_query($r,$query);
+                $connections = mysqli_query($connection,$query);
                 $msg = "Teacher record deleted successfully!";
 
         }

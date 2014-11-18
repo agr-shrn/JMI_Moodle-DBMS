@@ -1,18 +1,8 @@
 <?php
-
     include_once("../includes/functions.php");
-
+    include_once("../includes/session.php");
+    include_once("../includes/connection.php");
     
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
-  define("DB_PASS", "12345");
-  define("DB_NAME", "jmi_moodle");
-
-
-      //$r = mysqli_connect($host, $user, $password,$db);
-
-  $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
-  
   	$file_name = $_FILES['syllabus']['name'];
 	$file_type = $_FILES['syllabus']['type'];
 	$file_tmp_name = $_FILES['syllabus']['tmp_name'];
@@ -28,10 +18,10 @@
         if(!empty($courseid)){
             $query = "UPDATE courses SET course_id='$courseid', course_name='$coursename', syllabus='$syllabus', tr_id='$teacherid'";
 			$query .= "WHERE course_id='{$courseid}'";
-            mysqli_query($r,$query);
+            mysqli_query($connection,$query);
 			
-			//$rs=1;
-            if(mysqli_affected_rows($r)){
+			//$connections=1;
+            if(mysqli_affected_rows($connection)){
                 $msg = "Course record edited!"; 	  
 			
 				if(isset($file_name)){

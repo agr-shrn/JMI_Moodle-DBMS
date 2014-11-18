@@ -1,24 +1,9 @@
-    <?php
+<?php
 
     include_once("../includes/functions.php");
-
+    include_once("../includes/session.php");
+    include_once("../includes/connection.php");
     
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
-  define("DB_PASS", "12345");
-  define("DB_NAME", "jmi_moodle");
-
-
-      //$r = mysqli_connect($host, $user, $password,$db);
-
-  $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
-  
-
-
-
-
-
-
 
     if(isset($_POST['add'])){
 	    $file_name1 = $_FILES['attendance']['name'];
@@ -33,12 +18,12 @@
     $dept = $_POST['department'];
     $attend = $file_name1;
     $semester = $_POST['sem'];
-    $res = $file_name2;
+    $connectiones = $file_name2;
             //insert query
         if(!empty($class_id)){
-            $query = "INSERT INTO class VALUES('$class_id','$dept','$attend','$semester','$res')";
-            $rs = mysqli_query($r,$query);
-            if($rs){
+            $query = "INSERT INTO class VALUES('$class_id','$dept','$attend','$semester','$connectiones')";
+            $connections = mysqli_query($connection,$query);
+            if($connections){
                 $msg = "New class record added!";
 				if(isset($file_name1)){
 					if(!empty($file_name1)){
@@ -72,7 +57,7 @@
 	    $class_id_2 = $_POST['cid'];
         if(!empty($class_id_2)){
             $query = "DELETE FROM class WHERE CLASS_ID = '$class_id_2'";
-                $rs = mysqli_query($r,$query);
+                $connections = mysqli_query($connection,$query);
                 $msg = "Class record deleted successfully!";
 
         }
