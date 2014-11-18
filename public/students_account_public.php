@@ -2,6 +2,7 @@
 <?php require_once("../includes/connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,19 +116,26 @@
 	$conf_newpass = $_POST['conf_newpass'];
 	$id = $_SESSION['user_id'];
   
-    if(isset($_POST['submit'])){
-            //insert query
-        if(!empty($oldpass)){
-			$query = "SELECT * FROM student WHERE STUDENT_ID = '$id' and password = '$oldpass'";
+    if(isset($_POST['submit']))
+    {
+        
+        if(!empty($oldpass))
+        {
+            $hashed_oldpass = sha1($oldpass);
+			$query = "SELECT * FROM student WHERE STUDENT_ID = '$id' and PASSWORD = '$hashed_oldpass'";
 			$rs = mysqli_query($connection,$query);
 			$nm = mysqli_num_rows($rs);
-            if($nm==1 and $newpass==$conf_newpass){
-				$query2 = "UPDATE student SET password='$newpass' WHERE STUDENT_ID ='$id'";
+            echo $nm;
+            if($nm==1 and $newpass == $conf_newpass)
+            {
+                $hashed_newpass = sha1($newpass);
+				$query2 = "UPDATE student SET password='$hashed_newpass' WHERE STUDENT_ID ='$id'";
 				$rs2 = mysqli_query($connection,$query2);
                 $msg = "Password changed successfully!";
             }  
-            else{
-                $msg = "Please enter the correct old password or re-check the new password";
+            else
+            {
+                //$msg = "Please enter the correct old password or re-check the new password";
             }			
         }  
         else{
@@ -138,9 +146,7 @@
 	
 	    if($rs)
         {
-            echo' 
-            <br /><br/><h1>'.$msg.'</h1>
-            ';
+            //echo' <br /><br/><h1>'.$msg.'</h1>'
 
         }
             

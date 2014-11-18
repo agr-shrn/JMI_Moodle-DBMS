@@ -17,11 +17,12 @@
         $query = "SELECT PASSWORD from `teacher` WHERE TR_ID = '$tr'";
         $rs = mysqli_query($connection,$query);
         $row = mysqli_fetch_row($rs);
+        $hashed_old_pass = sha1($old_pass);
 
-        if($old_pass == $row[0]) 
+        if($hashed_old_pass == $row[0]) 
         {
-
-            $query = "UPDATE `teacher` SET PASSWORD = '$new_pass' WHERE TR_ID = '$tr'";
+            $hashed_new_pass = sha1($new_pass);
+            $query = "UPDATE `teacher` SET PASSWORD = '$hashed_new_pass' WHERE TR_ID = '$tr'";
             $rs = mysqli_query($connection,$query);
             if($rs)
             {
@@ -39,7 +40,6 @@
             echo '<div class="container"><br /><br/><h1>'."$msg".'</h1></div>';
             require 'footer.php';
 
-            //redirect_to("../template/teacher_books.php");
         } 
         
     }

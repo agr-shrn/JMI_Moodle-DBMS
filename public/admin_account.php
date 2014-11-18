@@ -9,14 +9,18 @@
 	$conf_newpass = $_POST['conf_newpass'];
 	$user = $_SESSION['user_id'];
   
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit']))
+    {
             //insert query
-        if(!empty($oldpass)){
-			$query = "SELECT * FROM admin WHERE username = '$user' and password = '$oldpass'";
+        if(!empty($oldpass))
+        {
+            $hashed_oldpass=sha1($oldpass);
+			$query = "SELECT * FROM admin WHERE username = '$user' and password = '$hashed_oldpass'";
 			$connections = mysqli_query($connection,$query);
 			$nm = mysqli_num_rows($connections);
             if($nm==1 and $newpass==$conf_newpass){
-				$query2 = "UPDATE admin SET password='$newpass' WHERE username='$user'";
+                $hashed_newpass = sha1($newpass);
+				$query2 = "UPDATE admin SET password='$hashed_newpass' WHERE username='$user'";
 				$connections2 = mysqli_query($connection,$query2);
                 $msg = "Password changed successfully!";
             }  
