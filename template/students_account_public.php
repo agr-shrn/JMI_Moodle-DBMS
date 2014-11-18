@@ -11,12 +11,16 @@
     $id = $_SESSION['user_id'];
 
         //insert query
-    if(!empty($oldpass)){
-        $query = "SELECT * FROM student WHERE STUDENT_ID = '$id' and password = '$oldpass'";
+    if(!empty($oldpass))
+    {
+        $hashed_oldpass = sha1($oldpass);
+        $query = "SELECT * FROM student WHERE STUDENT_ID = '$id' and password = '$hashed_oldpass'";
         $rs = mysqli_query($connection,$query);
         $nm = mysqli_num_rows($rs);
-        if($nm==1 and $newpass==$conf_newpass){
-            $query2 = "UPDATE student SET password='$newpass' WHERE STUDENT_ID ='$id'";
+        if($nm==1 and $newpass==$conf_newpass)
+        {
+            $hashed_newpass=sha1($newpass);
+            $query2 = "UPDATE student SET password='$hashed_newpass' WHERE STUDENT_ID ='$id'";
             $rs2 = mysqli_query($connection,$query2);
             $msg = "Password changed successfully!";
         }  

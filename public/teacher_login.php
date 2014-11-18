@@ -17,8 +17,8 @@
         for ($i=0; $i<$num ; $i++)
         { 
             $row = mysqli_fetch_row($rs);
-           
-            if($user === $row[0] && $password === $row[1])
+            $hashed_password = sha1($password);
+            if($user == $row[0] && $hashed_password == $row[1])
             {
                 $_SESSION['loggedin'] = 1;
                 $_SESSION['user_id'] = $user;
