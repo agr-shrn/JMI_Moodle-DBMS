@@ -1,26 +1,17 @@
 <?php
 
     include_once("../includes/functions.php");
-
+    include_once("../includes/session.php");
+    include_once("../includes/connection.php");
     
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
-  define("DB_PASS", "12345");
-  define("DB_NAME", "jmi_moodle");
-
-
-      //$r = mysqli_connect($host, $user, $password,$db);
-
-  $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
-
-    $rs = 0;
+    $connections = 0;
     $postid = $_POST['postid'];
 	$commentid = $_POST['commentid'];
 	
 	 if(isset($_POST['delete_post'])){
         if(!empty($postid)){
             $query = "DELETE FROM posts WHERE POST_ID = '$postid'";
-                $rs = mysqli_query($r,$query);
+                $connections = mysqli_query($connection,$query);
                 $msg = "Post deleted successfully!";
 
         }
@@ -32,7 +23,7 @@
 	 if(isset($_POST['delete_comment'])){
         if(!empty($commentid)){
             $query = "DELETE FROM comments WHERE COMMENT_ID = '$commentid'";
-                $rs = mysqli_query($r,$query);
+                $connections = mysqli_query($connection,$query);
                 $msg = "Comment deleted successfully!";
 
         }

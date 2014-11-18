@@ -1,19 +1,10 @@
 <?php
 
     include_once("../includes/functions.php");
-
+    include_once("../includes/session.php");
+    include_once("../includes/connection.php");
     
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
-  define("DB_PASS", "12345");
-  define("DB_NAME", "jmi_moodle");
-
-
-      //$r = mysqli_connect($host, $user, $password,$db);
-
-  $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
-
-	$file_name = $_FILES['syllabus']['name'];
+ 	$file_name = $_FILES['syllabus']['name'];
 	$file_type = $_FILES['syllabus']['type'];
 	$file_tmp_name = $_FILES['syllabus']['tmp_name'];
 	$location = '../uploads/';
@@ -32,8 +23,8 @@
             //insert query
         if(!empty($courseid)){
             $query = "INSERT INTO courses VALUES('$courseid','$coursename','$syllabus','$teacherid')";
-			$rs = mysqli_query($r,$query);
-			if($rs){
+			$connections = mysqli_query($connection,$query);
+			if($connections){
 				$msg = "New course record added!";
 				if(isset($file_name)){
 					if(!empty($file_name)){
@@ -58,10 +49,10 @@
         if(!empty($courseid)){
             $query = "UPDATE courses SET course_id='$courseid', course_name='$coursename', syllabus='$syllabus', tr_id='$teacherid'";
 			$query .= "WHERE course_id='{$courseid}'";
-            mysqli_query($r,$query);
+            mysqli_query($connection,$query);
 			
-			$rs=1;
-            if(mysqli_affected_rows($r)){
+			$connections=1;
+            if(mysqli_affected_rows($connection)){
                 $msg = "Course record edited!";
             }  
             else{
@@ -76,7 +67,7 @@
     else if(isset($_POST['delete'])){
         if(!empty($courseid2)){
             $query = "DELETE FROM courses WHERE COURSE_ID = '$courseid2'";
-                $rs = mysqli_query($r,$query);
+                $connections = mysqli_query($connection,$query);
                 $msg = "Course record deleted successfully!";
 
         }

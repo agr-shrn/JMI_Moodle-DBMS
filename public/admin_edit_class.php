@@ -1,17 +1,9 @@
     <?php
 
     include_once("../includes/functions.php");
-
+    include_once("../includes/session.php");
+    include_once("../includes/connection.php");
     
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
-  define("DB_PASS", "12345");
-  define("DB_NAME", "jmi_moodle");
-
-
-      //$r = mysqli_connect($host, $user, $password,$db);
-
-  $r = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME) or die("Database connection failed: " . mysql_error());
 
     $file_name1 = $_FILES['attendance']['name'];
 	$file_type1 = $_FILES['attendance']['type'];
@@ -25,17 +17,17 @@
     $dept = $_POST['department'];
     $attend = $file_name1;
     $semester = $_POST['sem'];
-    $res = $file_name2;
+    $connectiones = $file_name2;
 	
     if (isset($_POST['submit'])){
         if(!empty($class_id)){
-            $query = "UPDATE class SET class_id='$class_id', department='$dept', attendance='$attend', semester=$semester, results='$res' ";
+            $query = "UPDATE class SET class_id='$class_id', department='$dept', attendance='$attend', semester=$semester, results='$connectiones' ";
 			$query .= "WHERE class_id='{$class_id}'";
-            mysqli_query($r,$query);
+            mysqli_query($connection,$query);
 			
-			//$rs=1;
+			//$connections=1;
 			
-            if(mysqli_affected_rows($r)){
+            if(mysqli_affected_rows($connection)){
                 $msg = "Class record edited!";
 				if(isset($file_name1)){
 					if(!empty($file_name1)){
